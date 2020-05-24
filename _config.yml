@@ -1,0 +1,21 @@
+title: Blog
+email: deepakmahakale@gmail.com
+description: >-
+  This is my personal blog. You will find articles related to ruby on rails here.
+baseurl: '/blog'
+url: 'http://deepakmahakale.in'
+twitter_username: deepakmahakale
+github_username:  deepakmahakale
+google_analytics: UA-86389306-2
+
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+social_links:
+  facebook: deepakmahakale1
+  github: deepakmahakale
+  stackoverflow: 4758119/deepak-mahakale
+  instagram: deepakmahakale
+  linkedin: deepakmahakale
+  twitter: deepakmahakale
