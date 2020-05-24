@@ -3,6 +3,7 @@ layout:   post
 title:    Rails and TimeZone issue with query
 date:     2018-04-21 13:08:58 +0530
 comments: true
+tags: [rails]
 ---
 You must have faced timezone issue if you work with the application in different timezone.
 ActiveRecord does take care of the timezone while creating, updating or querying the records.

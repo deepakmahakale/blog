@@ -3,6 +3,7 @@ layout:   post
 title:    Elasticsearch::Model - Put Mapping
 date:     2018-04-20 13:38:58 +0530
 comments: true
+tags: [ruby, elasticsearch]
 ---
 The PUT mapping API allows you to add fields to an existing index.
 This method is available with Elasticsearch::Model but it's not documented.

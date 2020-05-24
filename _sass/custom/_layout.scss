@@ -33,6 +33,34 @@
   padding: 60px 0;
 }
 
+.tag{
+  display: inline-block;
+  background: rgba(106,159,181,0.15);
+  padding: 0 .5rem;
+  margin-right: .5rem;
+  border-radius: 4px;
+  text-decoration: none;
+
+  &:before {
+    content: "\f02b";
+    font-family: FontAwesome;
+    padding-right: .5em;
+  }
+  &:hover {
+    text-decoration: none;
+    background: #6a9fb5;
+    color: #fff;
+  }
+}
+
+hr {
+  position: relative;
+  margin: 1.5rem 0;
+  border: 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #fff;
+}
+
 .check-out-blog {
   text-align: center;
   a {
