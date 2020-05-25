@@ -5,7 +5,7 @@ title: Blog
 
 <div class="home">
 
-  <h1 class="page-heading">Upcoming posts</h1>
+  <h1 id="upcoming-posts" class="page-heading">Upcoming posts</h1>
 
   <ul class="post-list">
     {% for post in site.drafts %}
@@ -15,7 +15,7 @@ title: Blog
     {% endfor %}
   </ul>
 
-  <h1 class="page-heading">Recent posts</h1>
+  <h1 id="recent-posts" class="page-heading">Recent posts</h1>
 
   <ul class="post-list">
     {% for post in site.posts %}
