@@ -5,18 +5,23 @@ title: Blog
 
 <div class="home">
 
+  <h1 class="page-heading">Upcoming posts</h1>
+
+  <ul class="post-list">
+    {% for post in site.drafts %}
+      <li>
+        {% include post_preview.html %}
+      </li>
+    {% endfor %}
+  </ul>
+
   <h1 class="page-heading">Recent posts</h1>
 
   <ul class="post-list">
     {% for post in site.posts %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
+        {% include post_preview.html %}
       </li>
     {% endfor %}
   </ul>
-
 </div>
