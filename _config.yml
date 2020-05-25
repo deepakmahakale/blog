@@ -23,3 +23,4 @@ permalink: /:year/:month/:day/:title:output_ext
 tag_page: '/tags'
 collections:
   - drafts
+excerpt_separator: <!--more-->

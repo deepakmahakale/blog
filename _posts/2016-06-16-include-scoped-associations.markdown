@@ -23,6 +23,7 @@ class Post < ActiveRecord::Base
   scope :published, -> { where(published: true) }
 end
 ```
+<!--more-->
 
 Now if you loop over the association you will see N + 1 queries being fired
 

@@ -16,6 +16,7 @@ You can also perform partial update with custom callbacks instead of indexing th
 
 There is [`update_document_attributes`][update_document_attributes]{:target='_blank'} method in `Elasticsearch::Model` which is used for partial update but it's not documented.
 You can still use the method to perform the partial update.
+<!--more-->
 
 ```ruby
 # https://github.com/elastic/elasticsearch-rails/blob/7815039c0f78ed0b9b896936875ee4d01855390e/elasticsearch-model/lib/elasticsearch/model/indexing.rb#L432-L439

@@ -21,6 +21,7 @@ invoke  active_record
 
 > rake db:migrate
 ```
+<!--more-->
 
 Seed the data
 

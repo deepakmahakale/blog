@@ -9,7 +9,7 @@ title: Blog
 
   <ul class="post-list">
     {% for post in site.drafts %}
-      <li>
+      <li class="no-style post-preview">
         {% include post_preview.html %}
       </li>
     {% endfor %}
@@ -19,7 +19,7 @@ title: Blog
 
   <ul class="post-list">
     {% for post in site.posts %}
-      <li>
+      <li class="no-style post-preview">
         {% include post_preview.html %}
       </li>
     {% endfor %}

@@ -10,6 +10,7 @@ ActiveRecord does take care of the timezone while creating, updating or querying
 The DateTime is converted to UTC before the query is executed.
 
 You will face issue if you are using raw queries or passing `String` instead of `DateTime`.
+<!--more-->
 
 ###  DateTime conversion while creating the records
 

@@ -26,6 +26,7 @@ class CreateUsers < ActiveRecord::Migration
   end
 end
 ```
+<!--more-->
 
 ### Adding a new column to table
 
