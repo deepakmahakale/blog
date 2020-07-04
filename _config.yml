@@ -11,6 +11,7 @@ google_analytics: UA-86389306-2
 
 markdown: kramdown
 plugins:
+  - jemoji
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
