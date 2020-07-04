@@ -12,6 +12,7 @@ markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
 social_links:
   facebook: deepakmahakale1
   github: deepakmahakale
