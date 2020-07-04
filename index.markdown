@@ -5,6 +5,7 @@ title: Blog
 
 <div class="home">
 
+  {% if site.drafts.size > 0 %}
   <h1 id="upcoming-posts" class="page-heading">Upcoming posts</h1>
 
   <ul class="post-list">
@@ -14,6 +15,7 @@ title: Blog
       </li>
     {% endfor %}
   </ul>
+  {% endif %}
 
   <h1 id="recent-posts" class="page-heading">Recent posts</h1>
 
