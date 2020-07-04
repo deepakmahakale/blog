@@ -4,6 +4,7 @@ title:    A step by step guide to upgrade rails 4 application to rails 5
 date:     2020-07-04 22:00:00 +0530
 comments: true
 tags: [rails, rails-upgrade]
+image: /assets/images/guide-to-upgrade-rails-application.png
 ---
 
 Upgrading an application can be tedious if you don't have good test coverage.
