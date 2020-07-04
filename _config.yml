@@ -1,7 +1,8 @@
 title: Blog
 email: deepakmahakale@gmail.com
 description: >-
-  This is my personal blog. You will find articles related to ruby on rails here.
+  Personal blog (Mostly ROR).
+  Articles on common issues and their solutions, best practices, notes.
 baseurl: '/blog'
 url: 'http://deepakmahakale.in'
 twitter_username: deepakmahakale
