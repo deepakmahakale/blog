@@ -1,0 +1,14 @@
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script>
+  $("#slideshow > div:gt(0)").hide();
+  setInterval(function() {
+    $('#slideshow > div:first')
+      .fadeOut(1000)
+      .next()
+      .delay(1100)
+      .fadeIn(1000)
+      .end()
+      .appendTo('#slideshow');
+  },  10000);
+</script>
