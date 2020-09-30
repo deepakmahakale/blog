@@ -97,11 +97,19 @@ But, in order to start the application we need to do some config changes.
   ```ruby
   # config/application.rb
   config.serve_static_assets = true
-  config.static_cache_control = 'public, max-age=3600'
+  # or
+  config.serve_static_files = true
 
   # to
-
   config.public_file_server.enabled
+  ```
+
+  ```ruby
+  # config/application.rb
+  config.static_cache_control = 'public, max-age=3600'
+
+  #to
+
   config.public_file_server.headers = { 'Cache-Control' => 'public, max-age=3600' }
   ```
 
