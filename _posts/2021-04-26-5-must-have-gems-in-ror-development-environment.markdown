@@ -10,9 +10,9 @@ I have been developing rails applications since 2014.
 I started my career with rails and since then I have worked on numerous
 rails projects.
 
-These are a few gems which I like to add in almost all of my projects
+These are a few gems that I like to add to almost all of my projects
 (including the personal projects).
-These gems definitely increase the productivity and make the developer's
+These gems definitely increase productivity and make the developer's
 life easier.
 
 These are my top 5 gems you should have in your development environment.
@@ -32,7 +32,7 @@ It will show you all the rendered partials on the current page with **⌘+shift+
 ![Xray-Rails]({{site.baseurl}}/assets/images/posts/xray-rails.png)
 *source: https://github.com/brentd/xray-rails*
 
-What's interesting is that you can click on the overlay and the partial will be opened in your editor.
+Interestingly, you can click on the overlay and the partial will be opened in your editor.
 
 The default editor is sublime but you can always configure the editor of choice.
 Add the following in `~/.xrayconfig`
@@ -50,13 +50,13 @@ gem 'rubocop', require: false
 
 I believe this gem requires no introduction. But still, in case you haven't heard of it - rubocop is a linter for ruby.
 
-The above line is an understatement because, rubocop doesn't just lint you code
-or reports the problem in you code.
+The above line is an understatement because rubocop doesn't just lint your code
+or reports the problem in your code.
 But, rubocop can actually fix most of the issues automatically.
 
-A true life saver.
+A true lifesaver.
 
-To lint you code you can run the following command:
+To lint your code you can run the following command:
 
 ```bash
 # Check all the ruby files in the project
@@ -65,7 +65,7 @@ rubocop
 # Check a specific file
 rubocop app/models/user.rb
 
-# Check and fix the autocorrectable issues
+# Check and fix the issues that can be autocorrected
 rubocop -a
 ```
 
@@ -94,7 +94,7 @@ It helps identify the queries which are causing **N+1** queries and helps you fi
 </tbody>
 ```
 
-This is an example of N+1 query report by the bullet gem
+This is an example of an N+1 query report by the bullet gem
 
 ```log
 user: deepak
@@ -118,7 +118,7 @@ gem 'awesome_print', group: 'development'
 
 example:
 
-Do this in console and you will get a pretty representation with all the attributes of the post object.
+Do this in the console and you will get a pretty representation with all the attributes of the post object.
 
 ```ruby
 require "awesome_print"
@@ -138,7 +138,8 @@ require 'awesome_print'
 AwesomePrint.irb!
 ```
 
-Remember, you can always comment these lines if you ever decide manually require them.
+Remember, you can always comment these lines if you ever decide to manually
+require awesome_print.
 
 ### #5. [Rspec-rails](https://github.com/rspec/rspec-rails){:target="_blank"}
 
@@ -148,10 +149,10 @@ group :development, :test do
 end
 ```
 
-Last but not the least `rspec-rails` is a must to to ensure you application is
-well tested and to avoid any unintended bugs in the existing features.
+Last but not least `rspec-rails` is a must to ensure your application is
+well tested and to avoid introducing any unintended bugs in the existing features.
 
-RSpec also provides lot of methods to test various scenarios. Visit the github repository of rspec-rails for the list of available [matchers](https://github.com/rspec/rspec-rails#helpful-rails-matchers)
+RSpec also provides a lot of methods to test various scenarios. Visit the GitHub repository of rspec-rails for the list of available [matchers](https://github.com/rspec/rspec-rails#helpful-rails-matchers)
 
 Make sure to run the following command once you have installed the gem.
 
