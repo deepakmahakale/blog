@@ -30,7 +30,6 @@ As the name suggests this gem helps you see the xray of your application.
 It will show you all the rendered partials on the current page with **⌘+shift+x**(Mac) or **ctrl+shift+x**.
 
 ![Xray-Rails]({{site.baseurl}}/assets/images/posts/xray-rails.png)
-*source: https://github.com/brentd/xray-rails*
 
 Interestingly, you can click on the overlay and the partial will be opened in your editor.
 
