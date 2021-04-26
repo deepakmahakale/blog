@@ -1,6 +1,9 @@
 ---
 layout:   post
 title:    5 Must have gems in Ruby on Rails development environment.
+description: >
+  Top 5 must have gems to increase productivity and make the developer's
+life easier.
 date:     2021-04-26 08:00:00 +0530
 comments: true
 tags: [ruby, rubygems]
