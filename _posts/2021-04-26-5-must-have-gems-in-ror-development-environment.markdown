@@ -4,6 +4,7 @@ title:    5 Must have gems in Ruby on Rails development environment.
 date:     2021-04-26 08:00:00 +0530
 comments: true
 tags: [ruby, rubygems]
+image: /assets/images/5-must-have-gems-in-ror-development-environment.jpg
 ---
 
 I have been developing rails applications since 2014.
