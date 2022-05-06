@@ -1,2 +1,52 @@
+title: Blog
+email: deepakmahakale@gmail.com
+description: >-
+  Personal blog (Mostly ROR).
+  Articles on common issues and their solutions, best practices, notes.
 baseurl: ''
+url: 'https://deepakmahakale.in'
+twitter_username: deepakmahakale
+github_username:  deepakmahakale
 google_analytics: ''
+
+markdown: kramdown
+plugins:
+  - jemoji
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# SEO Stuff
+author:
+  twitter: deepakmahakale
+twitter:
+  username: deepakmahakale
+  card: summary_large_image
+social:
+  name: Deepak Mahakale
+  links:
+    - https://github.com/deepakmahakale
+    - https://stackoverflow.com/users/4758119/deepak-mahakale
+    - https://www.linkedin.com/in/deepakmahakale
+    - https://twitter.com/deepakmahakale
+    - https://www.facebook.com/deepakmahakale1
+    - https://www.instagram.com/deepakmahakale
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/default-card.png
+
+# Social sites for footer
+social_links:
+  facebook: deepakmahakale1
+  github: deepakmahakale
+  stackoverflow: 4758119/deepak-mahakale
+  instagram: deepakmahakale
+  linkedin: deepakmahakale
+  twitter: deepakmahakale
+permalink: /:year/:month/:day/:title:output_ext
+tag_page: '/tags'
+collections:
+  - drafts
+excerpt_separator: <!--more-->
