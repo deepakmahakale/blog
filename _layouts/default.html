@@ -5,6 +5,9 @@
 
   <body>
 
+    {%- if jekyll.environment == 'production' and site.google_tag_manager_id -%}
+    {%- include tag_manager_script.html -%}
+    {%- endif -%}
     {%- include menu.haml -%}
     {%- include header.haml -%}
 
