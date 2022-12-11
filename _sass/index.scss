@@ -54,12 +54,4 @@ $on-laptop:        800px !default;
 }
 
 // Import partials.
-@import
-  "custom/base",
-  "custom/layout",
-  "custom/menu",
-  "custom/effects",
-  "custom/about",
-  "custom/social",
-  "hamburgers/hamburgers",
-  "syntax/github";
+@import "custom/layout";
