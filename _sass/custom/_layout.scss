@@ -13,6 +13,16 @@
     margin: 55px auto 25px auto;
     color: #4c5365;
   }
+  .banner-image {
+    display: flex;
+    justify-content: center;
+    img {
+      margin: auto;
+      border-radius: 100px;
+      max-height: 200px;
+      max-width: 200px;
+    }
+  }
 }
 
 .page-header {
@@ -133,7 +143,7 @@ img + em {
     }
     .social {
       float: left;
-      width: 50%;
+      width: 100%;
       @include media-query($on-palm) {
         width: 100%;
         text-align: center;
@@ -141,21 +151,17 @@ img + em {
       }
 
       .footer-links {
-        display: auto;
+        display: flex;
+        justify-content: space-between;
 
         @include media-query($on-palm) {
           display: none;
         }
       }
-    }
-    .work {
-      float: left;
-      width: 50%;
-      min-height: 220px;
-      @include media-query($on-palm) {
-        width: 100%;
-        text-align: center;
+      h6 {
+        color: $blue-color;
       }
+
     }
   }
 }
