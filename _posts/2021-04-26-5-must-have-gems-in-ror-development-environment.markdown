@@ -33,7 +33,7 @@ As the name suggests this gem helps you see the xray of your application.
 
 It will show you all the rendered partials on the current page with **⌘+shift+x**(Mac) or **ctrl+shift+x**.
 
-![Xray-Rails]({{site.baseurl}}/assets/images/posts/xray-rails.png)
+![Xray-Rails]({{site.baseurl}}/assets/images/posts/xray-rails.png){: loading="lazy" }
 
 Interestingly, you can click on the overlay and the partial will be opened in your editor.
 
@@ -74,7 +74,7 @@ rubocop -a
 
 extensions for editors like sublime and VSCode are also available.
 
-![rubocop vscode extension]({{site.baseurl}}/assets/images/posts/rubocop.png)
+![rubocop vscode extension]({{site.baseurl}}/assets/images/posts/rubocop.png){: loading="lazy" }
 
 ### #3. [Bullet](https://github.com/flyerhzm/bullet){:target="_blank"}
 
@@ -130,7 +130,7 @@ ap Post.last
 
 This is an example of how the post object looks
 
-![awesome_print]({{site.baseurl}}/assets/images/posts/awesome_print.png)
+![awesome_print]({{site.baseurl}}/assets/images/posts/awesome_print.png){: loading="lazy" }
 
 To avoid requiring it every time you start the console you can do the following:
 
