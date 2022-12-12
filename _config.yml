@@ -1,12 +1,11 @@
-title: Blog
+title: Deepak's blog
 email: deepakmahakale@gmail.com
 description: >-
-  Personal blog (Mostly ROR).
-  Articles on common issues and their solutions, best practices, notes.
+  Ruby on Rails best practices, tips, common issues and solutions.
 baseurl: '/blog'
 url: 'https://deepakmahakale.in'
 twitter_username: deepakmahakale
-github_username:  deepakmahakale
+github_username: deepakmahakale
 google_tag_manager_id: GTM-WRTX84W
 
 markdown: kramdown
@@ -33,7 +32,7 @@ social:
     - https://www.instagram.com/deepakmahakale
 defaults:
   - scope:
-      path: ""
+      path: ''
     values:
       image: /assets/images/default-card-seo.png
 
