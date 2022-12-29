@@ -28,8 +28,8 @@ Whenever we were navigating from the page with the audio element to any other pa
 
 We tried to search the same and came across few issue in the turbolinks repository.
 
-- [turbolinks/turbolinks#157](https://github.com/turbolinks/turbolinks/issues/157)
-- [turbolinks/turbolinks#177](https://github.com/turbolinks/turbolinks/issues/177)
+- [turbolinks/turbolinks#157](https://github.com/turbolinks/turbolinks/issues/157){:target="_blank"}
+- [turbolinks/turbolinks#177](https://github.com/turbolinks/turbolinks/issues/177){:target="_blank"}
 
 We found few solutions but since we were using stimulus js we solved it with the following approach
 

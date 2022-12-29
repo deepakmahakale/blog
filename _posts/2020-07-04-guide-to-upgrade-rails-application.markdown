@@ -231,7 +231,7 @@ But, in order to start the application we need to do some config changes.
 
 - AASM if you're upgrading aasm from 3 -> 4
 
-  Follow this guide - [Upgrading AASM from version 3 to 4](https://github.com/aasm/aasm/blob/master/README_FROM_VERSION_3_TO_4.md)
+  Follow this guide - [Upgrading AASM from version 3 to 4](https://github.com/aasm/aasm/blob/master/README_FROM_VERSION_3_TO_4.md){:target="_blank"}
 
 ### Mailers
 
@@ -293,7 +293,7 @@ But, in order to start the application we need to do some config changes.
 
   use `rubocop` to auto fix the format
 
-  Ref: [https://thoughtbot.com/blog/deprecating-static-attributes-in-factory_bot-4-11](https://thoughtbot.com/blog/deprecating-static-attributes-in-factory_bot-4-11)
+  Ref: [https://thoughtbot.com/blog/deprecating-static-attributes-in-factory_bot-4-11](https://thoughtbot.com/blog/deprecating-static-attributes-in-factory_bot-4-11){:target="_blank"}
 
   ```shell
   rubocop -a spec/factories/xyz.rb --only FactoryBot/AttributeDefinedStatically
@@ -319,7 +319,7 @@ But, in order to start the application we need to do some config changes.
   get :summary, params: { id: request.id }, xhr: true
   ```
 
-  :information_source: This gem does it for you - [rails5-spec-converter](https://github.com/tjgrathwell/rails5-spec-converter)
+  :information_source: This gem does it for you - [rails5-spec-converter](https://github.com/tjgrathwell/rails5-spec-converter){:target="_blank"}
 
 
 
