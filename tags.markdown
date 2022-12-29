@@ -2,25 +2,28 @@
 layout: page
 title: Tag
 ---
+
 {% assign posts = site.posts | concat: site.drafts %}
-{% assign tags =  posts | map: 'tags' | join: ','  | split: ','  | group_by: tag.name | sort: 'size' | reverse %}
+{% assign tags =  posts | map: 'tags' | uniq %}
 
 <div class="tag-list">
   {% for tag in tags %}
-    <a class="tag" href="#{{ tag.name | slugify }}"> {{ tag.name }}&nbsp;({{ tag.size }}) </a>
+    {% assign tag_posts = posts | where: 'tags', tag %}
+    <a class="tag" href="#{{ tag | slugify }}"> {{ tag }} ({{ tag_posts.size }}) </a>
   {% endfor %}
 </div>
 
 <hr>
 
 {% for tag in tags %}
-  <h2 id="{{ tag.name | slugify }}">
+
+  <h2 id="{{ tag | slugify }}">
   <i class="fa fa-tag" aria-hidden="true"></i>
-  {{ tag.name | capitalize }}&nbsp;({{ tag.size }})
+  {% assign tag_posts = posts | where: 'tags', tag %}
+  {{ tag | capitalize }} ({{ tag_posts.size }})
   </h2>
   <ul>
-    {% for post in posts %}
-      {% if post.tags contains tag.name %}
+    {% for post in tag_posts %}
       <li>
         <small>{{ post.date | date_to_string }}</small>
         <small>
@@ -36,7 +39,6 @@ title: Tag
           </a>
         {% endif %}
       </li>
-      {% endif %}
     {% endfor %}
   </ul>
 {% endfor %}
