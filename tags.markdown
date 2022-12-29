@@ -4,12 +4,11 @@ title: Tag
 ---
 
 {% assign posts = site.posts | concat: site.drafts %}
-{% assign tags =  posts | map: 'tags' | uniq %}
+{% assign tags =  posts | map: 'tags' | uniq | sort %}
 
 <div class="tag-list">
   {% for tag in tags %}
-    {% assign tag_posts = posts | where: 'tags', tag %}
-    <a class="tag" href="#{{ tag | slugify }}"> {{ tag }} ({{ tag_posts.size }}) </a>
+    <a class="tag" href="#{{ tag | slugify }}"> {{ tag }} ({{ site.tags[tag].size }}) </a>
   {% endfor %}
 </div>
 
@@ -19,10 +18,10 @@ title: Tag
 
   <h2 id="{{ tag | slugify }}">
   <i class="fa fa-tag" aria-hidden="true"></i>
-  {% assign tag_posts = posts | where: 'tags', tag %}
-  {{ tag | capitalize }} ({{ tag_posts.size }})
+  {{ tag | capitalize }} ({{ site.tags[tag].size }})
   </h2>
   <ul>
+    {% assign tag_posts = posts | where: 'tags', tag %}
     {% for post in tag_posts %}
       <li>
         <small>{{ post.date | date_to_string }}</small>
