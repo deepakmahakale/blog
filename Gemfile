@@ -10,10 +10,6 @@ group :jekyll_plugins do
   gem 'jemoji'
 end
 
-group :development do
-  gem 'twitter'
-end
-
 install_if -> { RUBY_PLATFORM =~ %r!mingw|mswin|java! } do
   gem 'tzinfo'
   gem 'tzinfo-data'
