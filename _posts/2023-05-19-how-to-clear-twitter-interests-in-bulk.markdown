@@ -6,7 +6,7 @@ description: >
 date:     2023-05-19 16:00:00 +0530
 comments: true
 tags:     [twitter, javascript]
-image:
+image:    /assets/images/how-to-clear-twitter-interests.jpg
 ---
 
 Are you getting random tweets on your timeline?
