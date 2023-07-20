@@ -26,6 +26,29 @@ This is how we traced it and fixed it:
 
 ## Solution
 
+**Updated on 20th July 2023**
+
+Pundit `v2.3.1` is
+[released](https://github.com/varvet/pundit/tree/v2.3.1)
+and updating to the new version should solve this issue.
+
+```ruby
+# Gemfile
+
+# https://github.com/varvet/pundit
+gem 'pundit', '~> 2.3.1'
+```
+
+OR
+
+You can just update pundit using
+
+```sh
+bundle update pundit
+```
+
+**Original Solution**
+
 We found that the error was raised from pundit gem from this location:
 
 [pundit-2.3.0/lib/generators/rspec/templates/policy_spec.rb](https://github.com/varvet/pundit/blob/16554a5fe814153d05cec133705bd583709a4124/lib/generators/rspec/templates/policy_spec.rb#L1){:target="_blank"}
