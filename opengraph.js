@@ -1,13 +1,14 @@
 const { createCanvas, loadImage } = require('canvas')
 const { program } = require('commander');
 const fs = require('fs');
-
+const path = require('path')
 const canvas = createCanvas(1200, 630);
 const ctx = canvas.getContext('2d');
 
 program
   .option('-t, --title <title>', 'The title of the article')
   .option('-d, --date <date>', 'The publish date of the article')
+  .option('-a, --author <author>', 'The author of the article')
   .option('-f, --filename <filename>', 'The ogimage filename')
   .parse();
 
@@ -19,19 +20,23 @@ loadImage('./assets/artboard.png').then((image) => {
 
   ctx.textBaseline = "top";
 
-  // Write title
-  ctx.font = '90px SF-Pro-Display-Medium';
-  // ctx.font = '90px sans-serif';
+  // Date
+  ctx.font = '40px Arial';
   ctx.fillStyle = '#ffffff';
-  wrapText(ctx, options.title, 80, 80, 1100, 100);
-  // ctx.fillText(program.title, 80, 80);
+  ctx.fillText(options.date, 60, 198);
 
-  // Write date
+  // Title
+  ctx.font = '76px Arial';
+  // ctx.font = '90px sans-serif';
+  wrapText(ctx, options.title, 60, 250, 1100, 100);
+
+  // Author
   ctx.textBaseline = "bottom";
-  ctx.font = '40px SF-Pro-Display-Medium';
-  ctx.fillStyle = '#EBAFA2';
-  ctx.fillText(options.date, 80, 555);
+  ctx.font = '40px Arial';
+  // ctx.fillStyle = '#EBAFA2';
+  ctx.fillText(options.author || 'Deepak Mahakale', 60, 522);
 
+  fs.mkdirSync(path.dirname(options.filename), { recursive: true });
   const out = fs.createWriteStream(options.filename)
   const stream = canvas.createPNGStream()
   stream.pipe(out)

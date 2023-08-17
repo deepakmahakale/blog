@@ -13,12 +13,12 @@ module Jekyll
       id = context['page']['id'].to_sha1
 
       # Check if the file already exists in the 'opengraph' foldler, return early if it does
-      if File.exist?("#{Dir.pwd}/opengraph/#{id}.png")
-        puts "File exists #{Dir.pwd}/opengraph/#{id}.png}"
+      if File.exist?("#{Dir.pwd}/assets/images/opengraph/#{id}.png")
+        puts "File exists #{Dir.pwd}/assets/images/opengraph/#{id}.png}"
       else
 
         # the script to be called with the formatted title, and resolving filename
-        script = "node #{Dir.pwd}/opengraph.js -t '#{context['page']['title']}' -d '#{context['page']['date'].strftime('%e %B %Y')}' -f '#{Dir.pwd}/opengraph/#{id}.png'"
+        script = "node #{Dir.pwd}/opengraph.js -t '#{context['page']['title']}' -a '#{context['page']['author']}' -d '#{context['page']['date'].strftime('%e %B %Y')}' -f '#{Dir.pwd}/assets/images/opengraph/#{id}.png'"
 
         system(script)
 
@@ -29,9 +29,9 @@ module Jekyll
       site = context.registers[:site]
 
       # Add the file to the list of static_files needed to be copied to the _site
-      site.static_files << Jekyll::StaticFile.new(site, site.source, '/opengraph/', "#{id}.png")
+      site.static_files << Jekyll::StaticFile.new(site, site.source, '/assets/images/opengraph/', "#{id}.png")
 
-      "/opengraph/#{id}.png"
+      "/assets/images/opengraph/#{id}.png"
     end
   end
 end
