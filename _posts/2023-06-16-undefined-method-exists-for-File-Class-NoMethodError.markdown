@@ -8,7 +8,7 @@ description: >
 date:     2023-06-16 11:20:00 +0530
 comments: true
 tags:     [ruby, rubygems, pundit]
-image:    /assets/images/undefined-method-exists.jpg
+image:    autogenerate
 ---
 
 Recently we upgraded ruby to 3.2.

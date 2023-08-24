@@ -19,8 +19,12 @@ module Jekyll
       else
         title = context['page']['title'].tr('`', '').tr('"', "\'")
         # the script to be called with the formatted title, and resolving filename
-        script = "node #{Dir.pwd}/opengraph.js -t \"#{title}\" -a '#{context['page']['author']}' -d '#{context['page']['date'].strftime('%b %e, %Y')}' -f '#{full_file_path}'"
-
+        script = <<~COMMAND
+          node #{Dir.pwd}/opengraph.js \
+            -t \"#{title}\" \
+            -d '#{context['page']['date'].strftime('%b %e, %Y')}' \
+            -f '#{full_file_path}'
+        COMMAND
         system(script)
 
         puts script

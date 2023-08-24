@@ -6,7 +6,7 @@ description: >
 date:     2022-05-06 08:00:00 +0530
 comments: true
 tags:     [rails, stimulusjs, turbolinks]
-image:    /assets/images/audio-element-autoplay-issue.jpg
+image:    autogenerate
 ---
 
 ## Background of the issue
