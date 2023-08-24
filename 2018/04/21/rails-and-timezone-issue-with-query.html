@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+  <link rel="manifest" href="/blog/site.webmanifest"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Rails and TimeZone issue with query | Deepak’s blog</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Rails and TimeZone issue with query" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="You must have faced timezone issue if you work with the application in different timezone. ActiveRecord does take care of the timezone while creating, updating or querying the records. The DateTime is converted to UTC before the query is executed. You will face issue if you are using raw queries or passing String instead of DateTime." />
+<meta property="og:description" content="You must have faced timezone issue if you work with the application in different timezone. ActiveRecord does take care of the timezone while creating, updating or querying the records. The DateTime is converted to UTC before the query is executed. You will face issue if you are using raw queries or passing String instead of DateTime." />
+<link rel="canonical" href="https://deepakmahakale.com/blog/2018/04/21/rails-and-timezone-issue-with-query.html" />
+<meta property="og:url" content="https://deepakmahakale.com/blog/2018/04/21/rails-and-timezone-issue-with-query.html" />
+<meta property="og:site_name" content="Deepak’s blog" />
+<meta property="og:image" content="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-04-21T07:38:58+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" />
+<meta property="twitter:title" content="Rails and TimeZone issue with query" />
+<meta name="twitter:site" content="@deepakmahakale" />
+<meta name="twitter:creator" content="@deepakmahakale" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2018-04-21T07:38:58+00:00","datePublished":"2018-04-21T07:38:58+00:00","description":"You must have faced timezone issue if you work with the application in different timezone. ActiveRecord does take care of the timezone while creating, updating or querying the records. The DateTime is converted to UTC before the query is executed. You will face issue if you are using raw queries or passing String instead of DateTime.","headline":"Rails and TimeZone issue with query","image":"https://deepakmahakale.com/blog/assets/images/default-card-seo.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://deepakmahakale.com/blog/2018/04/21/rails-and-timezone-issue-with-query.html"},"url":"https://deepakmahakale.com/blog/2018/04/21/rails-and-timezone-issue-with-query.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700|Open+Sans:400,400i,600" rel="stylesheet">
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="stylesheet" href="https://deepakmahakale.com/assets/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"><link type="application/atom+xml" rel="alternate" href="https://deepakmahakale.com/blog/feed.xml" title="Deepak's blog" /><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WRTX84W');</script>
+<!-- End Google Tag Manager -->
+</head>
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRTX84W" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="menu-button"><button class="hamburger hamburger--spring" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button></div><script>  var hamburger = document.querySelector('.hamburger');    hamburger.addEventListener('click', function() {    hamburger.classList.toggle('is-active');    document.body.classList.toggle('show-menu');    });</script><div class="menu-wrapper"><nav class="menu"><div class="list-items uppercase"><a class="underline-effect" href="https://deepakmahakale.com"><span>Home</span></a><br><a class="underline-effect" href="https://deepakmahakale.com/blog"><span>Blog</span></a><br><a class="underline-effect" href="https://deepakmahakale.com/about"><span>About</span></a><br><a class="underline-effect" href="mailto:hello@deepakmahakale.in"><span>Contact</span></a></div></nav></div><header class="page-header">
+      <div class="wrapper">
+        <span class="site-title"><a href="/blog" class="no-style">Deepak's blog</a></span>
+      </div>
+    </header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Rails and TimeZone issue with query</h1>
+    <p class="post-meta">
+      <time datetime="2018-04-21T07:38:58+00:00" itemprop="datePublished">Apr 21, 2018</time>
+      
+        |
+        
+          <a href="/blog/tags#rails" class="tag">rails</a>
+        
+      
+
+      
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>You must have faced timezone issue if you work with the application in different timezone.
+ActiveRecord does take care of the timezone while creating, updating or querying the records.
+The DateTime is converted to UTC before the query is executed.</p>
+
+<p>You will face issue if you are using raw queries or passing <code class="language-plaintext highlighter-rouge">String</code> instead of <code class="language-plaintext highlighter-rouge">DateTime</code>.
+<!--more--></p>
+
+<h3 id="datetime-conversion-while-creating-the-records">DateTime conversion while creating the records</h3>
+
+<p>Let’s create a few records in database to see how ActiveRecord converts the DateTime while creating the record.</p>
+
+<p>We are going to create following records:</p>
+<ol>
+  <li>Today: beginning of day</li>
+  <li>Today: end of day</li>
+  <li>Tomorrow: beginning of day</li>
+</ol>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">today_beginning</span> <span class="o">=</span> <span class="s1">'2018-04-21 00:00:00'</span><span class="p">.</span><span class="nf">to_time</span>
+<span class="c1">#=&gt; 2018-04-21 00:00:00 +0530</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">text: </span><span class="s1">'Today: beginning of day'</span><span class="p">,</span> <span class="ss">created_at: </span><span class="n">today_beginning</span><span class="p">,</span> <span class="ss">updated_at: </span><span class="n">today_beginning</span><span class="p">)</span>
+  <span class="no">SQL</span> <span class="p">(</span><span class="mf">1.0</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="s2">"messages"</span> <span class="p">(</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"updated_at"</span><span class="p">)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="sc">?,</span> <span class="p">?,</span> <span class="sc">?)</span>  <span class="p">[[</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"Today: beginning of day"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"2018-04-20 18:30:00"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"updated_at"</span><span class="p">,</span> <span class="s2">"2018-04-20 18:30:00"</span><span class="p">]]</span>
+<span class="c1">#&lt;Message:0x000000000404b5d8&gt; {</span>
+            <span class="p">:</span><span class="nb">id</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: beginning of day"</span><span class="p">,</span>
+    <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+    <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+<span class="p">}</span>
+
+<span class="n">today_end</span> <span class="o">=</span> <span class="s1">'2018-04-21 23:59:59'</span><span class="p">.</span><span class="nf">to_time</span>
+<span class="c1">#=&gt; 2018-04-21 23:59:59 +0530</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">text: </span><span class="s1">'Today: end of day'</span><span class="p">,</span> <span class="ss">created_at: </span><span class="n">today_end</span><span class="p">,</span> <span class="ss">updated_at: </span><span class="n">today_end</span><span class="p">)</span>
+  <span class="no">SQL</span> <span class="p">(</span><span class="mf">8.0</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="s2">"messages"</span> <span class="p">(</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"updated_at"</span><span class="p">)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="sc">?,</span> <span class="p">?,</span> <span class="sc">?)</span>  <span class="p">[[</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"Today: end of day"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"2018-04-21 18:29:59"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"updated_at"</span><span class="p">,</span> <span class="s2">"2018-04-21 18:29:59"</span><span class="p">]]</span>
+<span class="c1">#&lt;Message:0x00000000027d2588&gt; {</span>
+            <span class="p">:</span><span class="nb">id</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+    <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+    <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+<span class="p">}</span>
+
+<span class="n">tomorrow_beginning</span> <span class="o">=</span> <span class="s1">'2018-04-22 00:00:00'</span><span class="p">.</span><span class="nf">to_time</span>
+<span class="c1">#=&gt; 2018-04-22 00:00:00 +0530</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">text: </span><span class="s1">'Tomorrow: beginning of day'</span><span class="p">,</span> <span class="ss">created_at: </span><span class="n">tomorrow_beginning</span><span class="p">,</span> <span class="ss">updated_at: </span><span class="n">tomorrow_beginning</span><span class="p">)</span>
+  <span class="no">SQL</span> <span class="p">(</span><span class="mf">1.4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="s2">"messages"</span> <span class="p">(</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"updated_at"</span><span class="p">)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="sc">?,</span> <span class="p">?,</span> <span class="sc">?)</span>  <span class="p">[[</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"Tomorrow: beginning of day"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"2018-04-21 18:30:00"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"updated_at"</span><span class="p">,</span> <span class="s2">"2018-04-21 18:30:00"</span><span class="p">]]</span>
+<span class="c1">#&lt;Message:0x0000000005092cc0&gt; {</span>
+            <span class="p">:</span><span class="nb">id</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Tomorrow: beginning of day"</span><span class="p">,</span>
+    <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">22</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+    <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">22</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice that ActiveRecord changed the time from <code class="language-plaintext highlighter-rouge">Sat, 21 Apr 2018 00:00:00 IST +05:30</code> to <code class="language-plaintext highlighter-rouge">2018-04-20 18:30:00</code> before executing the query.</p>
+
+<h3 id="datetime-conversion-while-fetching-the-records">DateTime conversion while fetching the records</h3>
+
+<p>Let’s query on the records we have just created.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">beginning_of_day</span>
+<span class="c1">#=&gt; Sat, 21 Apr 2018 00:00:00 IST +05:30</span>
+
+<span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">end_of_day</span>
+<span class="c1">#=&gt; Sat, 21 Apr 2018 23:59:59 IST +05:30</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">created_at: </span><span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">beginning_of_day</span><span class="o">..</span><span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">end_of_day</span><span class="p">)</span>
+  <span class="no">Message</span> <span class="no">Load</span> <span class="p">(</span><span class="mf">0.2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">"messages"</span><span class="p">.</span><span class="nf">*</span> <span class="no">FROM</span> <span class="s2">"messages"</span> <span class="no">WHERE</span> <span class="p">(</span><span class="s2">"messages"</span><span class="o">.</span><span class="s2">"created_at"</span> <span class="no">BETWEEN</span> <span class="p">?</span> <span class="no">AND</span> <span class="p">?)</span>  <span class="p">[[</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"2018-04-20 18:30:00"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"2018-04-21 18:29:59.999999"</span><span class="p">]]</span>
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004efb380&gt; {</span>
+                <span class="p">:</span><span class="nb">id</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: beginning of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004efb1f0&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s2">"created_at BETWEEN ? AND ?"</span><span class="p">,</span> <span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">beginning_of_day</span><span class="p">,</span> <span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">end_of_day</span><span class="p">)</span>
+  <span class="no">Message</span> <span class="no">Load</span> <span class="p">(</span><span class="mf">0.4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">"messages"</span><span class="p">.</span><span class="nf">*</span> <span class="no">FROM</span> <span class="s2">"messages"</span> <span class="no">WHERE</span> <span class="p">(</span><span class="n">created_at</span> <span class="no">BETWEEN</span> <span class="s1">'2018-04-20 18:30:00'</span> <span class="no">AND</span> <span class="s1">'2018-04-21 18:29:59.999999'</span><span class="p">)</span>
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004eb6028&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: beginning of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004eb5e48&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>This works if you are passing the <code class="language-plaintext highlighter-rouge">DateTime</code> object.
+But you will get the incorrect result when you pass <code class="language-plaintext highlighter-rouge">String</code>. You can see the TimeZone in the string but ActiveRecord will not convert the time to UTC.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">beginning_of_day</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="c1">#=&gt; "2018-04-21 00:00:00 +0530"</span>
+
+<span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">end_of_day</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="c1">#=&gt; "2018-04-21 23:59:59 +0530"</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s2">"created_at BETWEEN ? AND ?"</span><span class="p">,</span> <span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">beginning_of_day</span><span class="p">.</span><span class="nf">to_s</span><span class="p">,</span> <span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">end_of_day</span><span class="p">.</span><span class="nf">to_s</span><span class="p">)</span>
+  <span class="no">Message</span> <span class="no">Load</span> <span class="p">(</span><span class="mf">0.2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">"messages"</span><span class="p">.</span><span class="nf">*</span> <span class="no">FROM</span> <span class="s2">"messages"</span> <span class="no">WHERE</span> <span class="p">(</span><span class="n">created_at</span> <span class="no">BETWEEN</span> <span class="s1">'2018-04-21 00:00:00 +0530'</span> <span class="no">AND</span> <span class="s1">'2018-04-21 23:59:59 +0530'</span><span class="p">)</span>
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004e10df8&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004e10c40&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Tomorrow: beginning of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">22</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">22</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>ActiveRecord assumes that the time is already in UTC and executes the query without changing the time.</p>
+
+<h3 id="how-to-avoid-timezone-issue-in-raw-sql-query">How to avoid timezone issue in raw SQL query.</h3>
+
+<h3 id="-solution-1-if-possible-use-find_by_sql"># Solution 1: If possible use <code class="language-plaintext highlighter-rouge">find_by_sql</code></h3>
+
+<p>To avoid SQL injection you can use <code class="language-plaintext highlighter-rouge">find_by_sql</code>. Pass the values and it will be converted to proper timezone.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Message</span><span class="p">.</span><span class="nf">find_by_sql</span><span class="p">([</span><span class="s2">"SELECT * FROM messages where created_at BETWEEN ? AND ?"</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">])</span>
+  <span class="no">Message</span> <span class="no">Load</span> <span class="p">(</span><span class="mf">1.0</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="o">*</span> <span class="no">FROM</span> <span class="n">messages</span> <span class="n">where</span> <span class="n">created_at</span> <span class="no">BETWEEN</span> <span class="s1">'2018-04-20 18:30:00'</span> <span class="no">AND</span> <span class="s1">'2018-04-21 18:29:59'</span>
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#&lt;Message:0x00000000045abb90&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: beginning of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#&lt;Message:0x00000000045aba50&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+</code></pre></div></div>
+
+<h3 id="-solution-2-convert-the-time-to-utc-before-querying"># Solution 2: Convert the time to UTC before querying</h3>
+
+<p>If you have no other option but to use raw query and interpolate the values, convert the time to utc.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">start_time</span> <span class="o">=</span> <span class="s2">"2018-04-21 00:00:00"</span><span class="p">.</span><span class="nf">to_time</span><span class="p">.</span><span class="nf">utc</span>
+<span class="c1">#=&gt; 2018-04-20 18:30:00 UTC</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="s2">"2018-04-21 23:59:59"</span><span class="p">.</span><span class="nf">to_time</span><span class="p">.</span><span class="nf">utc</span>
+<span class="c1">#=&gt; 2018-04-21 18:29:59 UTC</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="o">&lt;&lt;~</span><span class="no">SQL</span><span class="sh">
+  SELECT *
+  FROM messages
+  WHERE created_at BETWEEN '</span><span class="si">#{</span><span class="n">start_time</span><span class="si">}</span><span class="sh">' AND '</span><span class="si">#{</span><span class="n">end_time</span><span class="si">}</span><span class="sh">';
+</span><span class="no">SQL</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+  <span class="p">(</span><span class="mf">0.8</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="o">*</span>
+  <span class="no">FROM</span> <span class="n">messages</span>
+  <span class="no">WHERE</span> <span class="n">created_at</span> <span class="no">BETWEEN</span> <span class="s1">'2018-04-20 18:30:00 UTC'</span> <span class="no">AND</span> <span class="s1">'2018-04-21 18:29:59 UTC'</span><span class="p">;</span>
+
+<span class="n">result</span><span class="p">.</span><span class="nf">as_json</span>
+
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">{</span>
+                <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="s2">"text"</span> <span class="o">=&gt;</span> <span class="s2">"Today: beginning of day"</span><span class="p">,</span>
+        <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-20 18:30:00"</span><span class="p">,</span>
+        <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-20 18:30:00"</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+                <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="s2">"text"</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:29:59"</span><span class="p">,</span>
+        <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:29:59"</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+</code></pre></div></div>
+
+<h3 id="-solution-3-postgresql-use-timestamp-with-time-zone"># Solution 3: [PostgreSQL] Use <code class="language-plaintext highlighter-rouge">TIMESTAMP WITH TIME ZONE</code></h3>
+
+<p>This is the way to tell postgres that the Time passed is in some timezone and you need to convert it to UTC first.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">start_time</span> <span class="o">=</span> <span class="s1">'2018-04-21 00:00:00'</span>
+<span class="c1">#=&gt; "2018-04-21 00:00:00"</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="s1">'2018-04-21 23:59:59'</span>
+<span class="c1">#=&gt; "2018-04-21 23:59:59"</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="o">&lt;&lt;~</span><span class="no">SQL</span><span class="sh">
+  SELECT *
+  FROM messages
+  WHERE created_at BETWEEN TIMESTAMP WITH TIME ZONE '</span><span class="si">#{</span><span class="n">start_time</span><span class="si">}</span><span class="sh">'
+                       AND TIMESTAMP WITH TIME ZONE '</span><span class="si">#{</span><span class="n">end_time</span><span class="si">}</span><span class="sh">';
+</span><span class="no">SQL</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+  <span class="p">(</span><span class="mf">1.2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="o">*</span>
+    <span class="no">FROM</span> <span class="n">messages</span>
+    <span class="no">WHERE</span> <span class="n">created_at</span> <span class="no">BETWEEN</span> <span class="no">TIMESTAMP</span> <span class="no">WITH</span> <span class="no">TIME</span> <span class="no">ZONE</span> <span class="s1">'2018-04-21 00:00:00'</span>
+                         <span class="no">AND</span> <span class="no">TIMESTAMP</span> <span class="no">WITH</span> <span class="no">TIME</span> <span class="no">ZONE</span> <span class="s1">'2018-04-21 23:59:59'</span><span class="p">;</span>
+
+<span class="n">result</span><span class="p">.</span><span class="nf">as_json</span>
+
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">{</span>
+                <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+              <span class="s2">"text"</span> <span class="o">=&gt;</span> <span class="s2">"Tomorrow: beginning of day"</span><span class="p">,</span>
+        <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:30:00"</span><span class="p">,</span>
+        <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:30:00"</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+                <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="s2">"text"</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:29:59"</span><span class="p">,</span>
+        <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:29:59"</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="tldr">TL;DR</h3>
+
+<ol>
+  <li>Always use <a href="http://api.rubyonrails.org/classes/Time.html#method-c-current" target="_blank"><code class="language-plaintext highlighter-rouge">Time.current</code></a> or <a href="http://api.rubyonrails.org/classes/Date.html#method-c-current" target="_blank"><code class="language-plaintext highlighter-rouge">Date.current</code></a> while querying</li>
+  <li>Make sure to use <a href="http://api.rubyonrails.org/classes/Time.html#method-i-beginning_of_day" target="_blank"><code class="language-plaintext highlighter-rouge">beginning_of_day</code></a> &amp; <a href="http://api.rubyonrails.org/classes/Time.html#method-i-end_of_day" target="_blank"><code class="language-plaintext highlighter-rouge">end_of_day</code></a> if you need the records created for whole day.</li>
+  <li>Use <a href="http://api.rubyonrails.org/classes/ActiveRecord/Querying.html#method-i-find_by_sql" target="_blank"><code class="language-plaintext highlighter-rouge">find_by_sql</code></a> if possible.</li>
+  <li>Convert Date to UTC if you are using raw query.</li>
+  <li>Use <a href="https://www.postgresql.org/docs/9.1/static/datatype-datetime.html" target="_blank"><code class="language-plaintext highlighter-rouge">TIMESTAMP WITH TIME ZONE</code></a> in raw query if you are using PostgreSQL.</li>
+</ol>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="http://api.rubyonrails.org" target="_blank">http://api.rubyonrails.org</a></li>
+  <li><a href="https://www.postgresql.org" target="_blank">https://www.postgresql.org</a></li>
+</ul>
+
+
+  </div>
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://deepakmahakale.com/blog/2018/04/21/rails-and-timezone-issue-with-query.html";
+      this.page.identifier = "/2018/04/21/rails-and-timezone-issue-with-query.html";
+      this.page.title = "Rails and TimeZone issue with query";
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//deepakmahakale-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</article>
+
+      </div>
+    </main><div class="bottom"><div class="contact wrapper"><div class="social"><h6>Social Media</h6><div class="divider"></div><ul class="no-style footer-links"><li><a href="https://twitter.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">Twitter</a></li><li><a href="https://www.facebook.com/deepakmahakale1" rel="me" target="_blank" title="deepakmahakale1">Facebook</a></li><li><a href="https://www.instagram.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">Instagram</a></li><li><a href="https://github.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">GitHub</a></li><li><a href="https://www.linkedin.com/in/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">LinkedIn</a></li><li><a href="https://stackoverflow.com/users/4758119/deepak-mahakale" rel="me" target="_blank" title="4758119/deepak-mahakale">Stack Overflow</a></li></ul><ul class="social-media-list"><li><a href="https://twitter.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#twitter"></use></svg></a></li><li><a href="https://www.facebook.com/deepakmahakale1" rel="me" target="_blank" title="deepakmahakale1"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#facebook"></use></svg></a></li><li><a href="https://www.instagram.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#instagram"></use></svg></a></li><li><a href="https://github.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#github"></use></svg></a></li><li><a href="https://www.linkedin.com/in/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#linkedin"></use></svg></a></li><li><a href="https://stackoverflow.com/users/4758119/deepak-mahakale" rel="me" target="_blank" title="4758119/deepak-mahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#stackoverflow"></use></svg></a></li></ul></div></div><div class="clearfix"></div></div><footer class="site-footer"><ul class="footer-links uppercase"><li><a href="https://deepakmahakale.com">Home</a></li><li><a href="https://deepakmahakale.com/blog">Blog</a></li><li><a href="https://deepakmahakale.com/about">About</a></li><li><a href="mailto:hello@deepakmahakale.in">Contact</a></li></ul><span class="copyright">© 2023 DEEPAK MAHAKALE</span></footer><script src="https://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script>
+  $("#slideshow > div:gt(0)").hide();
+  setInterval(function() {
+    $('#slideshow > div:first')
+      .fadeOut(1000)
+      .next()
+      .delay(1100)
+      .fadeIn(1000)
+      .end()
+      .appendTo('#slideshow');
+  },  10000);
+</script>
+</body>
+
+</html>

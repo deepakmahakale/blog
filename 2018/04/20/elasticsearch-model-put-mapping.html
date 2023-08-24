@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+  <link rel="manifest" href="/blog/site.webmanifest"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Elasticsearch::Model - Put Mapping | Deepak’s blog</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Elasticsearch::Model - Put Mapping" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The PUT mapping API allows you to add fields to an existing index. This method is available with Elasticsearch::Model but it’s not documented. Elasticsearch Version - 5.3 Create a User model &gt; rails g model user first_name:string last_name:string email:string phone_number:string invoke active_record create db/migrate/20180420162454_create_users.rb create app/models/user.rb &gt; rake db:migrate" />
+<meta property="og:description" content="The PUT mapping API allows you to add fields to an existing index. This method is available with Elasticsearch::Model but it’s not documented. Elasticsearch Version - 5.3 Create a User model &gt; rails g model user first_name:string last_name:string email:string phone_number:string invoke active_record create db/migrate/20180420162454_create_users.rb create app/models/user.rb &gt; rake db:migrate" />
+<link rel="canonical" href="https://deepakmahakale.com/blog/2018/04/20/elasticsearch-model-put-mapping.html" />
+<meta property="og:url" content="https://deepakmahakale.com/blog/2018/04/20/elasticsearch-model-put-mapping.html" />
+<meta property="og:site_name" content="Deepak’s blog" />
+<meta property="og:image" content="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-04-20T08:08:58+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" />
+<meta property="twitter:title" content="Elasticsearch::Model - Put Mapping" />
+<meta name="twitter:site" content="@deepakmahakale" />
+<meta name="twitter:creator" content="@deepakmahakale" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2018-04-20T08:08:58+00:00","datePublished":"2018-04-20T08:08:58+00:00","description":"The PUT mapping API allows you to add fields to an existing index. This method is available with Elasticsearch::Model but it’s not documented. Elasticsearch Version - 5.3 Create a User model &gt; rails g model user first_name:string last_name:string email:string phone_number:string invoke active_record create db/migrate/20180420162454_create_users.rb create app/models/user.rb &gt; rake db:migrate","headline":"Elasticsearch::Model - Put Mapping","image":"https://deepakmahakale.com/blog/assets/images/default-card-seo.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://deepakmahakale.com/blog/2018/04/20/elasticsearch-model-put-mapping.html"},"url":"https://deepakmahakale.com/blog/2018/04/20/elasticsearch-model-put-mapping.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700|Open+Sans:400,400i,600" rel="stylesheet">
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="stylesheet" href="https://deepakmahakale.com/assets/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"><link type="application/atom+xml" rel="alternate" href="https://deepakmahakale.com/blog/feed.xml" title="Deepak's blog" /><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WRTX84W');</script>
+<!-- End Google Tag Manager -->
+</head>
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRTX84W" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="menu-button"><button class="hamburger hamburger--spring" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button></div><script>  var hamburger = document.querySelector('.hamburger');    hamburger.addEventListener('click', function() {    hamburger.classList.toggle('is-active');    document.body.classList.toggle('show-menu');    });</script><div class="menu-wrapper"><nav class="menu"><div class="list-items uppercase"><a class="underline-effect" href="https://deepakmahakale.com"><span>Home</span></a><br><a class="underline-effect" href="https://deepakmahakale.com/blog"><span>Blog</span></a><br><a class="underline-effect" href="https://deepakmahakale.com/about"><span>About</span></a><br><a class="underline-effect" href="mailto:hello@deepakmahakale.in"><span>Contact</span></a></div></nav></div><header class="page-header">
+      <div class="wrapper">
+        <span class="site-title"><a href="/blog" class="no-style">Deepak's blog</a></span>
+      </div>
+    </header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Elasticsearch::Model - Put Mapping</h1>
+    <p class="post-meta">
+      <time datetime="2018-04-20T08:08:58+00:00" itemprop="datePublished">Apr 20, 2018</time>
+      
+        |
+        
+          <a href="/blog/tags#ruby" class="tag">ruby</a>
+        
+          <a href="/blog/tags#elasticsearch" class="tag">elasticsearch</a>
+        
+      
+
+      
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>The PUT mapping API allows you to add fields to an existing index.
+This method is available with Elasticsearch::Model but it’s not documented.</p>
+
+<blockquote>
+  <p>Elasticsearch Version - 5.3</p>
+</blockquote>
+
+<h2 id="create-a-user-model">Create a User model</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> rails g model user first_name:string last_name:string email:string phone_number:string
+
+invoke  active_record
+  create    db/migrate/20180420162454_create_users.rb
+  create    app/models/user.rb
+
+<span class="o">&gt;</span> rake db:migrate
+</code></pre></div></div>
+<!--more-->
+
+<p>Seed the data</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">10</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span>
+  <span class="nb">name</span> <span class="o">=</span> <span class="no">Faker</span><span class="o">::</span><span class="no">Name</span><span class="p">.</span><span class="nf">first_name</span>
+  <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span>
+    <span class="ss">first_name: </span><span class="nb">name</span><span class="p">,</span>
+    <span class="ss">last_name: </span><span class="no">Faker</span><span class="o">::</span><span class="no">Name</span><span class="p">.</span><span class="nf">last_name</span><span class="p">,</span>
+    <span class="ss">email: </span><span class="no">Faker</span><span class="o">::</span><span class="no">Internet</span><span class="p">.</span><span class="nf">email</span><span class="p">(</span><span class="nb">name</span><span class="p">),</span>
+    <span class="ss">phone_number: </span><span class="no">Faker</span><span class="o">::</span><span class="no">PhoneNumber</span><span class="p">.</span><span class="nf">phone_number</span>
+  <span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="add-mapping">Add mapping</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/models/concerns/searchable.rb</span>
+<span class="k">module</span> <span class="nn">Searchable</span>
+  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
+
+  <span class="n">included</span> <span class="k">do</span>
+    <span class="kp">include</span> <span class="no">Elasticsearch</span><span class="o">::</span><span class="no">Model</span>
+    <span class="n">mapping</span> <span class="k">do</span>
+      <span class="n">indexes</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">type: :integer</span>
+      <span class="n">indexes</span> <span class="ss">:first_name</span><span class="p">,</span> <span class="ss">type: :text</span>
+      <span class="n">indexes</span> <span class="ss">:last_name</span><span class="p">,</span> <span class="ss">type: :text</span>
+      <span class="n">indexes</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">type: :text</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1">#app/models/user.rb</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="kp">include</span> <span class="no">Searchable</span>
+
+  <span class="k">def</span> <span class="nf">as_indexed_json</span><span class="p">(</span><span class="n">_options</span> <span class="o">=</span> <span class="p">{})</span>
+    <span class="n">as_json</span><span class="p">(</span><span class="ss">only: </span><span class="sx">%i[id first_name last_name email phone_number]</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="create-index-and-import-all-users">Create index and import all users</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="no">User</span><span class="p">.</span><span class="nf">__elasticsearch__</span><span class="p">.</span><span class="nf">create_index!</span>
+<span class="p">{</span>
+           <span class="s2">"acknowledged"</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+    <span class="s2">"shards_acknowledged"</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+                  <span class="s2">"index"</span> <span class="o">=&gt;</span> <span class="s2">"users"</span>
+<span class="p">}</span>
+
+<span class="o">&gt;</span> <span class="no">User</span><span class="p">.</span><span class="nf">import</span>
+</code></pre></div></div>
+
+<p><strong>You can search users now</strong></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">search</span> <span class="s1">'vesta'</span>
+<span class="o">&gt;</span> <span class="n">response</span><span class="p">.</span><span class="nf">results</span><span class="p">.</span><span class="nf">as_json</span>
+
+<span class="p">[</span>
+  <span class="p">{</span>
+     <span class="s2">"_index"</span> <span class="o">=&gt;</span> <span class="s2">"users"</span><span class="p">,</span>
+      <span class="s2">"_type"</span> <span class="o">=&gt;</span> <span class="s2">"user"</span><span class="p">,</span>
+        <span class="s2">"_id"</span> <span class="o">=&gt;</span> <span class="s2">"10"</span><span class="p">,</span>
+     <span class="s2">"_score"</span> <span class="o">=&gt;</span> <span class="mf">1.6348188</span><span class="p">,</span>
+    <span class="s2">"_source"</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"first_name"</span> <span class="o">=&gt;</span> <span class="s2">"Vesta"</span><span class="p">,</span>
+         <span class="s2">"last_name"</span> <span class="o">=&gt;</span> <span class="s2">"Toy"</span><span class="p">,</span>
+             <span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"vesta@bradtkeconnelly.biz"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<h2 id="add-new-fields">Add new fields</h2>
+
+<p>Now to change the mapping just add new field and update the mapping</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapping</span> <span class="k">do</span>
+  <span class="c1">#...</span>
+  <span class="n">indexes</span> <span class="ss">:phone_number</span><span class="p">,</span> <span class="ss">type: :text</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="update-the-mapping-using-put-mapping-api">Update the mapping using Put Mapping API</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># ...</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">put_mapping</span>
+    <span class="n">__elasticsearch__</span><span class="p">.</span><span class="nf">client</span><span class="p">.</span><span class="nf">indices</span><span class="p">.</span><span class="nf">put_mapping</span><span class="p">(</span>
+      <span class="ss">index: </span><span class="n">index_name</span><span class="p">,</span>
+      <span class="ss">type:  </span><span class="n">document_type</span><span class="p">,</span>
+      <span class="ss">body:  </span><span class="n">mapping</span><span class="p">.</span><span class="nf">to_hash</span>
+    <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="bulk-update">Bulk Update</h2>
+
+<p>Now you need to update all the documents. we can use the bulk update API.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">bulk_update</span>
+  <span class="n">find_in_batches</span> <span class="k">do</span> <span class="o">|</span><span class="n">users</span><span class="o">|</span>
+    <span class="n">__elasticsearch__</span><span class="p">.</span><span class="nf">client</span><span class="p">.</span><span class="nf">bulk</span><span class="p">(</span>
+      <span class="ss">index: </span><span class="n">index_name</span><span class="p">,</span>
+      <span class="ss">type: </span><span class="n">__elasticsearch__</span><span class="p">.</span><span class="nf">document_type</span><span class="p">,</span>
+      <span class="ss">body: </span><span class="n">processed_records</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+    <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">processed_records</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+  <span class="n">users</span><span class="p">.</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+    <span class="p">{</span>
+      <span class="ss">update: </span><span class="p">{</span>
+        <span class="ss">_id: </span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+        <span class="ss">data: </span><span class="p">{</span>
+          <span class="ss">doc: </span><span class="p">{</span>
+            <span class="ss">id: </span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+            <span class="ss">phone_number: </span><span class="n">user</span><span class="p">.</span><span class="nf">phone_number</span>
+          <span class="p">}.</span><span class="nf">as_json</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.3/index.html" target="_blank">Elasticsearch official documentation</a></li>
+  <li><a href="https://github.com/elastic/elasticsearch-rails/tree/master/elasticsearch-model" target="_blank">Elasticsearch::Model</a></li>
+</ul>
+
+
+  </div>
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://deepakmahakale.com/blog/2018/04/20/elasticsearch-model-put-mapping.html";
+      this.page.identifier = "/2018/04/20/elasticsearch-model-put-mapping.html";
+      this.page.title = "Elasticsearch::Model - Put Mapping";
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//deepakmahakale-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</article>
+
+      </div>
+    </main><div class="bottom"><div class="contact wrapper"><div class="social"><h6>Social Media</h6><div class="divider"></div><ul class="no-style footer-links"><li><a href="https://twitter.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">Twitter</a></li><li><a href="https://www.facebook.com/deepakmahakale1" rel="me" target="_blank" title="deepakmahakale1">Facebook</a></li><li><a href="https://www.instagram.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">Instagram</a></li><li><a href="https://github.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">GitHub</a></li><li><a href="https://www.linkedin.com/in/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">LinkedIn</a></li><li><a href="https://stackoverflow.com/users/4758119/deepak-mahakale" rel="me" target="_blank" title="4758119/deepak-mahakale">Stack Overflow</a></li></ul><ul class="social-media-list"><li><a href="https://twitter.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#twitter"></use></svg></a></li><li><a href="https://www.facebook.com/deepakmahakale1" rel="me" target="_blank" title="deepakmahakale1"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#facebook"></use></svg></a></li><li><a href="https://www.instagram.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#instagram"></use></svg></a></li><li><a href="https://github.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#github"></use></svg></a></li><li><a href="https://www.linkedin.com/in/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#linkedin"></use></svg></a></li><li><a href="https://stackoverflow.com/users/4758119/deepak-mahakale" rel="me" target="_blank" title="4758119/deepak-mahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#stackoverflow"></use></svg></a></li></ul></div></div><div class="clearfix"></div></div><footer class="site-footer"><ul class="footer-links uppercase"><li><a href="https://deepakmahakale.com">Home</a></li><li><a href="https://deepakmahakale.com/blog">Blog</a></li><li><a href="https://deepakmahakale.com/about">About</a></li><li><a href="mailto:hello@deepakmahakale.in">Contact</a></li></ul><span class="copyright">© 2023 DEEPAK MAHAKALE</span></footer><script src="https://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script>
+  $("#slideshow > div:gt(0)").hide();
+  setInterval(function() {
+    $('#slideshow > div:first')
+      .fadeOut(1000)
+      .next()
+      .delay(1100)
+      .fadeIn(1000)
+      .end()
+      .appendTo('#slideshow');
+  },  10000);
+</script>
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+  <link rel="manifest" href="/blog/site.webmanifest"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Error installing puma - Failed to build gem native extension | Deepak’s blog</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Error installing puma - Failed to build gem native extension" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A solution to install puma" />
+<meta property="og:description" content="A solution to install puma" />
+<link rel="canonical" href="https://deepakmahakale.com/blog/2023/08/24/unable-to-install-puma.html" />
+<meta property="og:url" content="https://deepakmahakale.com/blog/2023/08/24/unable-to-install-puma.html" />
+<meta property="og:site_name" content="Deepak’s blog" />
+<meta property="og:image" content="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-24T06:30:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" />
+<meta property="twitter:title" content="Error installing puma - Failed to build gem native extension" />
+<meta name="twitter:site" content="@deepakmahakale" />
+<meta name="twitter:creator" content="@deepakmahakale" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-08-24T06:30:00+00:00","datePublished":"2023-08-24T06:30:00+00:00","description":"A solution to install puma","headline":"Error installing puma - Failed to build gem native extension","image":"https://deepakmahakale.com/blog/assets/images/default-card-seo.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://deepakmahakale.com/blog/2023/08/24/unable-to-install-puma.html"},"url":"https://deepakmahakale.com/blog/2023/08/24/unable-to-install-puma.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700|Open+Sans:400,400i,600" rel="stylesheet">
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="stylesheet" href="https://deepakmahakale.com/assets/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"><link type="application/atom+xml" rel="alternate" href="https://deepakmahakale.com/blog/feed.xml" title="Deepak's blog" /><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WRTX84W');</script>
+<!-- End Google Tag Manager -->
+</head>
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRTX84W" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="menu-button"><button class="hamburger hamburger--spring" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button></div><script>  var hamburger = document.querySelector('.hamburger');    hamburger.addEventListener('click', function() {    hamburger.classList.toggle('is-active');    document.body.classList.toggle('show-menu');    });</script><div class="menu-wrapper"><nav class="menu"><div class="list-items uppercase"><a class="underline-effect" href="https://deepakmahakale.com"><span>Home</span></a><br><a class="underline-effect" href="https://deepakmahakale.com/blog"><span>Blog</span></a><br><a class="underline-effect" href="https://deepakmahakale.com/about"><span>About</span></a><br><a class="underline-effect" href="mailto:hello@deepakmahakale.in"><span>Contact</span></a></div></nav></div><header class="page-header">
+      <div class="wrapper">
+        <span class="site-title"><a href="/blog" class="no-style">Deepak's blog</a></span>
+      </div>
+    </header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Error installing puma - Failed to build gem native extension</h1>
+    <p class="post-meta">
+      <time datetime="2023-08-24T06:30:00+00:00" itemprop="datePublished">Aug 24, 2023</time>
+      
+        |
+        
+          <a href="/blog/tags#puma" class="tag">puma</a>
+        
+          <a href="/blog/tags#rubygems" class="tag">rubygems</a>
+        
+      
+
+      
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Building native extensions. This could take a <span class="k">while</span>...
+ERROR: Error installing puma:
+ERROR: Failed to build gem native extension.
+</code></pre></div></div>
+
+<!--more-->
+
+<h3 id="full-log">Full Log</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR:  Error installing puma:
+	ERROR: Failed to build gem native extension.
+
+    current directory: /Users/deepak/.rvm/gems/ruby-3.2.1/gems/puma-6.0.0/ext/puma_http11
+/Users/deepak/.rvm/rubies/ruby-3.2.1/bin/ruby -I /Users/deepak/.rvm/rubies/ruby-3.2.1/lib/ruby/3.2.0 extconf.rb
+using OpenSSL pkgconfig (openssl.pc)
+checking for openssl/bio.h... yes
+checking for DTLS_method() in openssl/ssl.h... yes
+checking for SSL_CTX_set_session_cache_mode(NULL, 0) in openssl/ssl.h... yes
+checking for TLS_server_method() in openssl/ssl.h... yes
+checking for SSL_CTX_set_min_proto_version(NULL, 0) in openssl/ssl.h... yes
+checking for X509_STORE_up_ref()... yes
+checking for SSL_CTX_set_ecdh_auto(NULL, 0) in openssl/ssl.h... yes
+checking for SSL_CTX_set_dh_auto(NULL, 0) in openssl/ssl.h... yes
+checking for SSL_get1_peer_certificate() in openssl/ssl.h... no
+checking for Random.bytes... yes
+creating Makefile
+
+current directory: /Users/deepak/.rvm/gems/ruby-3.2.1/gems/puma-6.0.0/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20230824-67730-rq9jqk sitelibdir\=./.gem.20230824-67730-rq9jqk clean
+
+current directory: /Users/deepak/.rvm/gems/ruby-3.2.1/gems/puma-6.0.0/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20230824-67730-rq9jqk sitelibdir\=./.gem.20230824-67730-rq9jqk
+compiling http11_parser.c
+compiling mini_ssl.c
+compiling puma_http11.c
+linking shared-object puma/puma_http11.bundle
+Undefined symbols for architecture x86_64:
+  "_SSL_get1_peer_certificate", referenced from:
+      _engine_peercert in mini_ssl.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [puma_http11.bundle] Error 1
+
+make failed, exit code 2
+
+Gem files will remain installed in /Users/deepak/.rvm/gems/ruby-3.2.1/gems/puma-6.0.0 for inspection.
+Results logged to /Users/deepak/.rvm/gems/ruby-3.2.1/extensions/x86_64-darwin-22/3.2.0/puma-6.0.0/gem_make.out
+</code></pre></div></div>
+
+<h3 id="solution-for-puma--60">Solution for Puma &lt; 6.0</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">PUMA_DISABLE_SSL</span><span class="o">=</span><span class="nb">true </span>gem <span class="nb">install </span>puma <span class="nt">-v</span> <span class="s2">"5.6.7"</span>
+</code></pre></div></div>
+
+<p>If you’re facing issue with bundle install</p>
+
+<p>Run</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PUMA_DISABLE_SSL</span><span class="o">=</span>1
+
+bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<h3 id="solution-for-puma--60-1">Solution for Puma &gt; 6.0</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">PUMA_DISABLE_SSL</span><span class="o">=</span>1 gem <span class="nb">install </span>puma <span class="nt">-v</span> <span class="s2">"6.2.1"</span>
+</code></pre></div></div>
+
+<p>If you’re facing issue with bundle install</p>
+
+<p>Run</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PUMA_DISABLE_SSL</span><span class="o">=</span>1
+
+bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+  </div>
+  
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://deepakmahakale.com/blog/2023/08/24/unable-to-install-puma.html";
+      this.page.identifier = "/2023/08/24/unable-to-install-puma.html";
+      this.page.title = "Error installing puma - Failed to build gem native extension";
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//deepakmahakale-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</article>
+
+      </div>
+    </main><div class="bottom"><div class="contact wrapper"><div class="social"><h6>Social Media</h6><div class="divider"></div><ul class="no-style footer-links"><li><a href="https://twitter.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">Twitter</a></li><li><a href="https://www.facebook.com/deepakmahakale1" rel="me" target="_blank" title="deepakmahakale1">Facebook</a></li><li><a href="https://www.instagram.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">Instagram</a></li><li><a href="https://github.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">GitHub</a></li><li><a href="https://www.linkedin.com/in/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">LinkedIn</a></li><li><a href="https://stackoverflow.com/users/4758119/deepak-mahakale" rel="me" target="_blank" title="4758119/deepak-mahakale">Stack Overflow</a></li></ul><ul class="social-media-list"><li><a href="https://twitter.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#twitter"></use></svg></a></li><li><a href="https://www.facebook.com/deepakmahakale1" rel="me" target="_blank" title="deepakmahakale1"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#facebook"></use></svg></a></li><li><a href="https://www.instagram.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#instagram"></use></svg></a></li><li><a href="https://github.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#github"></use></svg></a></li><li><a href="https://www.linkedin.com/in/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#linkedin"></use></svg></a></li><li><a href="https://stackoverflow.com/users/4758119/deepak-mahakale" rel="me" target="_blank" title="4758119/deepak-mahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#stackoverflow"></use></svg></a></li></ul></div></div><div class="clearfix"></div></div><footer class="site-footer"><ul class="footer-links uppercase"><li><a href="https://deepakmahakale.com">Home</a></li><li><a href="https://deepakmahakale.com/blog">Blog</a></li><li><a href="https://deepakmahakale.com/about">About</a></li><li><a href="mailto:hello@deepakmahakale.in">Contact</a></li></ul><span class="copyright">© 2023 DEEPAK MAHAKALE</span></footer><script src="https://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script>
+  $("#slideshow > div:gt(0)").hide();
+  setInterval(function() {
+    $('#slideshow > div:first')
+      .fadeOut(1000)
+      .next()
+      .delay(1100)
+      .fadeIn(1000)
+      .end()
+      .appendTo('#slideshow');
+  },  10000);
+</script>
+</body>
+
+</html>

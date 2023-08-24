@@ -1,0 +1,1256 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://deepakmahakale.com/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://deepakmahakale.com/blog/" rel="alternate" type="text/html" /><updated>2023-08-24T12:58:21+00:00</updated><id>https://deepakmahakale.com/blog/feed.xml</id><title type="html">Deepak’s blog</title><subtitle>Ruby on Rails best practices, tips, common issues and solutions.</subtitle><author><name>{&quot;twitter&quot;=&gt;&quot;deepakmahakale&quot;}</name></author><entry><title type="html">Error installing puma - Failed to build gem native extension</title><link href="https://deepakmahakale.com/blog/2023/08/24/unable-to-install-puma.html" rel="alternate" type="text/html" title="Error installing puma - Failed to build gem native extension" /><published>2023-08-24T06:30:00+00:00</published><updated>2023-08-24T06:30:00+00:00</updated><id>https://deepakmahakale.com/blog/2023/08/24/unable-to-install-puma</id><content type="html" xml:base="https://deepakmahakale.com/blog/2023/08/24/unable-to-install-puma.html"><![CDATA[<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Building native extensions. This could take a <span class="k">while</span>...
+ERROR: Error installing puma:
+ERROR: Failed to build gem native extension.
+</code></pre></div></div>
+
+<!--more-->
+
+<h3 id="full-log">Full Log</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR:  Error installing puma:
+	ERROR: Failed to build gem native extension.
+
+    current directory: /Users/deepak/.rvm/gems/ruby-3.2.1/gems/puma-6.0.0/ext/puma_http11
+/Users/deepak/.rvm/rubies/ruby-3.2.1/bin/ruby -I /Users/deepak/.rvm/rubies/ruby-3.2.1/lib/ruby/3.2.0 extconf.rb
+using OpenSSL pkgconfig (openssl.pc)
+checking for openssl/bio.h... yes
+checking for DTLS_method() in openssl/ssl.h... yes
+checking for SSL_CTX_set_session_cache_mode(NULL, 0) in openssl/ssl.h... yes
+checking for TLS_server_method() in openssl/ssl.h... yes
+checking for SSL_CTX_set_min_proto_version(NULL, 0) in openssl/ssl.h... yes
+checking for X509_STORE_up_ref()... yes
+checking for SSL_CTX_set_ecdh_auto(NULL, 0) in openssl/ssl.h... yes
+checking for SSL_CTX_set_dh_auto(NULL, 0) in openssl/ssl.h... yes
+checking for SSL_get1_peer_certificate() in openssl/ssl.h... no
+checking for Random.bytes... yes
+creating Makefile
+
+current directory: /Users/deepak/.rvm/gems/ruby-3.2.1/gems/puma-6.0.0/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20230824-67730-rq9jqk sitelibdir\=./.gem.20230824-67730-rq9jqk clean
+
+current directory: /Users/deepak/.rvm/gems/ruby-3.2.1/gems/puma-6.0.0/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20230824-67730-rq9jqk sitelibdir\=./.gem.20230824-67730-rq9jqk
+compiling http11_parser.c
+compiling mini_ssl.c
+compiling puma_http11.c
+linking shared-object puma/puma_http11.bundle
+Undefined symbols for architecture x86_64:
+  "_SSL_get1_peer_certificate", referenced from:
+      _engine_peercert in mini_ssl.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [puma_http11.bundle] Error 1
+
+make failed, exit code 2
+
+Gem files will remain installed in /Users/deepak/.rvm/gems/ruby-3.2.1/gems/puma-6.0.0 for inspection.
+Results logged to /Users/deepak/.rvm/gems/ruby-3.2.1/extensions/x86_64-darwin-22/3.2.0/puma-6.0.0/gem_make.out
+</code></pre></div></div>
+
+<h3 id="solution-for-puma--60">Solution for Puma &lt; 6.0</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">PUMA_DISABLE_SSL</span><span class="o">=</span><span class="nb">true </span>gem <span class="nb">install </span>puma <span class="nt">-v</span> <span class="s2">"5.6.7"</span>
+</code></pre></div></div>
+
+<p>If you’re facing issue with bundle install</p>
+
+<p>Run</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PUMA_DISABLE_SSL</span><span class="o">=</span>1
+
+bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<h3 id="solution-for-puma--60-1">Solution for Puma &gt; 6.0</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">PUMA_DISABLE_SSL</span><span class="o">=</span>1 gem <span class="nb">install </span>puma <span class="nt">-v</span> <span class="s2">"6.2.1"</span>
+</code></pre></div></div>
+
+<p>If you’re facing issue with bundle install</p>
+
+<p>Run</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PUMA_DISABLE_SSL</span><span class="o">=</span>1
+
+bundle <span class="nb">install</span>
+</code></pre></div></div>]]></content><author><name>{&quot;twitter&quot;=&gt;&quot;deepakmahakale&quot;}</name></author><category term="puma" /><category term="rubygems" /><summary type="html"><![CDATA[A solution to install puma]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" /><media:content medium="image" url="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to get rid of bot accounts from Twitter timeline.</title><link href="https://deepakmahakale.com/blog/2023/07/14/how-to-mute-bot-accounts-on-twitter.html" rel="alternate" type="text/html" title="How to get rid of bot accounts from Twitter timeline." /><published>2023-07-14T06:30:00+00:00</published><updated>2023-07-14T06:30:00+00:00</updated><id>https://deepakmahakale.com/blog/2023/07/14/how-to-mute-bot-accounts-on-twitter</id><content type="html" xml:base="https://deepakmahakale.com/blog/2023/07/14/how-to-mute-bot-accounts-on-twitter.html"><![CDATA[<p>Tired of the bot accounts showing up in the twitter replies section?</p>
+
+<p>There’s no direct way to block all the bot accounts as of 14th July 2023.</p>
+
+<p>But we will show you a way to get rid of the bot accounts to some extent.</p>
+
+<p>Let’s see how to do it:</p>
+
+<!--more-->
+
+<h3 id="solution">Solution</h3>
+
+<ul>
+  <li>
+    <p>Go To:
+<code class="language-plaintext highlighter-rouge">More</code> &gt; <code class="language-plaintext highlighter-rouge">Settings and Support</code> &gt; <code class="language-plaintext highlighter-rouge">Settings and Privacy</code> &gt; <code class="language-plaintext highlighter-rouge">Privacy and Safety</code> &gt; <code class="language-plaintext highlighter-rouge">Mute and block</code> &gt; <code class="language-plaintext highlighter-rouge">Muted words</code></p>
+
+    <p>OR</p>
+  </li>
+  <li>
+    <p>Visit the
+<a href="https://twitter.com/settings/muted_keywords" target="_blank">Muted Keywords</a>
+page here.</p>
+
+    <p align="center" width="100%">
+  <img src="/blog/assets/images/posts/muted_words.png" loading="lazy" alt="Muted Words Page" />
+</p>
+  </li>
+  <li>
+    <p>Change this settings according to your needs</p>
+
+    <p align="center" width="100%">
+  <img src="/blog/assets/images/posts/muted_words_preferences.png" loading="lazy" alt="Muted Words Preferences" />
+</p>
+  </li>
+  <li>
+    <p>Add the following accounts/words to your muted words list.</p>
+  </li>
+</ul>
+
+<h4 id="list-of-muted-keywords">List of Muted Keywords</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@ReplyGPT
+@RoastHimJim
+@PraiseHimJim
+@FrameHimJim
+@pikaso_me
+@McPepes_AI
+@TruthGPTBot
+@LmaoGPT
+</code></pre></div></div>
+
+<p><strong>NOTE:</strong> You can also block/mute the accounts by visiting their account page.</p>
+
+<p><strong>NOTE:</strong> This list is not complete but I will keep updating this list.</p>]]></content><author><name>{&quot;twitter&quot;=&gt;&quot;deepakmahakale&quot;}</name></author><category term="twitter" /><category term="bots" /><summary type="html"><![CDATA[Tired of the bot accounts? In this blog we discuss how to get rid of those accounts from your timeline.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://deepakmahakale.com/blog/assets/images/how-to-mute-bot-accounts-on-twitter.jpg" /><media:content medium="image" url="https://deepakmahakale.com/blog/assets/images/how-to-mute-bot-accounts-on-twitter.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">undefined method `exists?’ for File:Class (NoMethodError)</title><link href="https://deepakmahakale.com/blog/2023/06/16/undefined-method-exists-for-File-Class-NoMethodError.html" rel="alternate" type="text/html" title="undefined method `exists?’ for File:Class (NoMethodError)" /><published>2023-06-16T05:50:00+00:00</published><updated>2023-06-16T05:50:00+00:00</updated><id>https://deepakmahakale.com/blog/2023/06/16/undefined-method-exists-for-File-Class-NoMethodError</id><content type="html" xml:base="https://deepakmahakale.com/blog/2023/06/16/undefined-method-exists-for-File-Class-NoMethodError.html"><![CDATA[<p>Recently we upgraded ruby to 3.2.
+We started getting the following error:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sr">/Users/</span><span class="n">deepak</span><span class="o">/</span><span class="p">.</span><span class="nf">rvm</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">3.2</span><span class="o">.</span><span class="mi">2</span><span class="vi">@my</span><span class="o">-</span><span class="n">project</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">pundit</span><span class="o">-</span><span class="mf">2.3</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">generators</span><span class="o">/</span><span class="n">rspec</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">policy_spec</span><span class="p">.</span><span class="nf">rb</span><span class="p">:</span><span class="mi">1</span><span class="ss">:in</span> <span class="sb">`template':
+undefined method `</span><span class="n">exists?</span><span class="err">'</span> <span class="k">for</span> <span class="no">File</span><span class="ss">:Class</span> <span class="p">(</span><span class="no">NoMethodError</span><span class="p">)</span>
+
+<span class="no">Did</span> <span class="n">you</span> <span class="n">mean?</span>  <span class="n">exist?</span>
+</code></pre></div></div>
+
+<p>This is how we traced it and fixed it:
+<!--more--></p>
+
+<h2 id="solution">Solution</h2>
+
+<p><strong>Updated on 20th July 2023</strong></p>
+
+<p>Pundit <code class="language-plaintext highlighter-rouge">v2.3.1</code> is
+<a href="https://github.com/varvet/pundit/tree/v2.3.1">released</a>
+and updating to the new version should solve this issue.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Gemfile</span>
+
+<span class="c1"># https://github.com/varvet/pundit</span>
+<span class="n">gem</span> <span class="s1">'pundit'</span><span class="p">,</span> <span class="s1">'~&gt; 2.3.1'</span>
+</code></pre></div></div>
+
+<p>OR</p>
+
+<p>You can just update pundit using</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle update pundit
+</code></pre></div></div>
+
+<p><strong>Original Solution</strong></p>
+
+<p>We found that the error was raised from pundit gem from this location:</p>
+
+<p><a href="https://github.com/varvet/pundit/blob/16554a5fe814153d05cec133705bd583709a4124/lib/generators/rspec/templates/policy_spec.rb#L1" target="_blank">pundit-2.3.0/lib/generators/rspec/templates/policy_spec.rb</a></p>
+
+<p>Turned out that <code class="language-plaintext highlighter-rouge">File.exists?</code> was first deprecated and later removed in Ruby 3.2 -
+Ref
+<a href="https://github.com/ruby/ruby/commit/bf97415c02b11a8949f715431aca9eeb6311add2" target="_blank">bf97415c</a></p>
+
+<p>We also found that it has been fixed in this pull request
+<a href="https://github.com/varvet/pundit/pull/754" target="_blank">varvet/pundit#754</a>
+but at the time of writing this article this change is not yet released</p>
+
+<p>How we fixed it in our project:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Gemfile</span>
+
+<span class="c1"># https://github.com/varvet/pundit</span>
+<span class="n">gem</span> <span class="s1">'pundit'</span><span class="p">,</span> <span class="ss">git: </span><span class="s1">'https://github.com/varvet/pundit.git'</span><span class="p">,</span> <span class="ss">ref: </span><span class="s1">'5b22078'</span>
+</code></pre></div></div>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">ref</code> is optional but it is recommended to add it.
+Having <code class="language-plaintext highlighter-rouge">ref</code> avoids getting unstable changes from the main branch.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://github.com/ruby/ruby/pull/5352" target="_blank">ruby/ruby#5352</a></li>
+  <li><a href="https://github.com/varvet/pundit/pull/754" target="_blank">varvet/pundit#754</a></li>
+</ul>]]></content><author><name>{&quot;twitter&quot;=&gt;&quot;deepakmahakale&quot;}</name></author><category term="ruby" /><category term="rubygems" /><category term="pundit" /><summary type="html"><![CDATA[Fix the undefined method `exists?' for File:Class (NoMethodError) in pundit policy generator]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://deepakmahakale.com/blog/assets/images/undefined-method-exists.jpg" /><media:content medium="image" url="https://deepakmahakale.com/blog/assets/images/undefined-method-exists.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to clear Twitter interests in bulk.</title><link href="https://deepakmahakale.com/blog/2023/05/19/how-to-clear-twitter-interests-in-bulk.html" rel="alternate" type="text/html" title="How to clear Twitter interests in bulk." /><published>2023-05-19T10:30:00+00:00</published><updated>2023-05-19T10:30:00+00:00</updated><id>https://deepakmahakale.com/blog/2023/05/19/how-to-clear-twitter-interests-in-bulk</id><content type="html" xml:base="https://deepakmahakale.com/blog/2023/05/19/how-to-clear-twitter-interests-in-bulk.html"><![CDATA[<p>Are you getting random tweets on your timeline?</p>
+
+<p>Or you clicked on a tweet and now you’re getting tweets related to the same topic and can’t get rid of it.</p>
+
+<p>Let’s see how to get rid of the interests:</p>
+
+<!--more-->
+
+<h3 id="solution-1-manual">Solution 1 (Manual)</h3>
+
+<ul>
+  <li>
+    <p>Go To:
+<code class="language-plaintext highlighter-rouge">More</code> &gt; <code class="language-plaintext highlighter-rouge">Settings and Support</code> &gt; <code class="language-plaintext highlighter-rouge">Settings and Privacy</code> &gt; <code class="language-plaintext highlighter-rouge">Privacy and Safety</code> &gt; <code class="language-plaintext highlighter-rouge">Content You See</code> &gt; <code class="language-plaintext highlighter-rouge">Interests</code></p>
+
+    <p>OR</p>
+
+    <p>Visit the <a href="https://twitter.com/settings/your_twitter_data/twitter_interests">Twitter Interests</a> page here.</p>
+
+    <p><img src="/blog/assets/images/posts/twitter_interests_page.png" alt="twitter_interests_page" loading="lazy" /></p>
+  </li>
+  <li>
+    <p>Check / Uncheck the Interests you like.</p>
+  </li>
+</ul>
+
+<h3 id="solution-2-programmatic">Solution 2 (Programmatic)</h3>
+
+<p>For this we will need to create a bookmark in chrome</p>
+
+<p><code class="language-plaintext highlighter-rouge">Bookmarks</code> &gt; <code class="language-plaintext highlighter-rouge">Bookmarks Manager</code> &gt; Click the <strong><code class="language-plaintext highlighter-rouge">⋮</code></strong> on the top right corner &gt; <code class="language-plaintext highlighter-rouge">Add new bookmark</code></p>
+
+<p>Enter the following details:</p>
+
+<ul>
+  <li>Name: Clear Twitter Interests</li>
+  <li>URL:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">javascript</span><span class="p">:(</span><span class="kd">function</span><span class="p">(){</span> <span class="kd">let</span> <span class="nx">interests</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">querySelectorAll</span><span class="p">(</span><span class="dl">"</span><span class="s2">input:checked</span><span class="dl">"</span><span class="p">);</span> <span class="p">[...</span><span class="nx">interests</span><span class="p">].</span><span class="nf">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">).</span><span class="nf">forEach</span><span class="p">((</span><span class="nx">widget</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">widget</span><span class="p">.</span><span class="nf">click</span><span class="p">()</span> <span class="p">})</span> <span class="p">})();</span>
+</code></pre></div></div>
+
+<p>and hit “Save”</p>
+
+<p><img src="/blog/assets/images/posts/create_bookmark.png" alt="create_bookmark" loading="lazy" /></p>
+
+<p>Now remember this will only uncheck 50 interests at a time.
+The reason behind this is twitter show this warning</p>
+
+<p><img src="/blog/assets/images/posts/twitter_over_capacity_error.png" alt="twitter_over_capacity_error" loading="lazy" /></p>
+
+<p>but feel free to change the number and see if it works for you.</p>]]></content><author><name>{&quot;twitter&quot;=&gt;&quot;deepakmahakale&quot;}</name></author><category term="twitter" /><category term="javascript" /><summary type="html"><![CDATA[Twitter timeline messed up? In this blog we discuss how to clear Twitter interests in bulk (with the help of JS).]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://deepakmahakale.com/blog/assets/images/how-to-clear-twitter-interests.jpg" /><media:content medium="image" url="https://deepakmahakale.com/blog/assets/images/how-to-clear-twitter-interests.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Audio element autoplay issue on redirection with turbolinks.</title><link href="https://deepakmahakale.com/blog/2022/05/06/audio-element-autoplay-issue-on-redirection-with-turbolinks.html" rel="alternate" type="text/html" title="Audio element autoplay issue on redirection with turbolinks." /><published>2022-05-06T02:30:00+00:00</published><updated>2022-05-06T02:30:00+00:00</updated><id>https://deepakmahakale.com/blog/2022/05/06/audio-element-autoplay-issue-on-redirection-with-turbolinks</id><content type="html" xml:base="https://deepakmahakale.com/blog/2022/05/06/audio-element-autoplay-issue-on-redirection-with-turbolinks.html"><![CDATA[<h2 id="background-of-the-issue">Background of the issue</h2>
+
+<p>Recently, we were working on a feature where we wanted to autoplay the audio.</p>
+
+<p>So like a normal developer we did the following:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;audio</span> <span class="na">autoplay</span> <span class="na">data-audio-target=</span><span class="s">"audioElement"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">"https://www.xyz/..."</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/audio&gt;</span>
+</code></pre></div></div>
+
+<p>Since this is a rails project and we have turbolinks on,
+we came across an interesting issue.</p>
+
+<p>Whenever we were navigating from the page with the audio element to any other page the audio from the previous page used to play.</p>
+
+<p>We tried to search the same and came across few issue in the turbolinks repository.</p>
+
+<ul>
+  <li><a href="https://github.com/turbolinks/turbolinks/issues/157" target="_blank">turbolinks/turbolinks#157</a></li>
+  <li><a href="https://github.com/turbolinks/turbolinks/issues/177" target="_blank">turbolinks/turbolinks#177</a></li>
+</ul>
+
+<p>We found few solutions but since we were using stimulus js we solved it with the following approach</p>
+
+<!--more-->
+
+<h2 id="the-solution">The solution</h2>
+
+<p>We removed the <code class="language-plaintext highlighter-rouge">autoplay</code> from the <code class="language-plaintext highlighter-rouge">&lt;audio&gt;</code> element.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;audio</span> <span class="na">data-audio-target=</span><span class="s">"audioElement"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">"https://www.xyz/..."</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/audio&gt;</span>
+</code></pre></div></div>
+
+<p>We added this on <code class="language-plaintext highlighter-rouge">connect()</code> in our stimulus controller. So whenever the controller is connected we play the audio.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Controller</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">stimulus</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nc">extends</span> <span class="nx">Controller</span> <span class="p">{</span>
+  <span class="c1">//...</span>
+
+  <span class="nf">connect</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">audioElementTarget</span><span class="p">.</span><span class="nf">play</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="c1">//...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This resolved our issue and gave us more control over the audio element.</p>]]></content><author><name>{&quot;twitter&quot;=&gt;&quot;deepakmahakale&quot;}</name></author><category term="rails" /><category term="stimulusjs" /><category term="turbolinks" /><summary type="html"><![CDATA[Audio element autoplay issue on redirection with turbolinks. Fixing the autoplay issue with Stimulus JS]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://deepakmahakale.com/blog/assets/images/audio-element-autoplay-issue.jpg" /><media:content medium="image" url="https://deepakmahakale.com/blog/assets/images/audio-element-autoplay-issue.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">5 Must have gems in Ruby on Rails development environment.</title><link href="https://deepakmahakale.com/blog/2021/04/26/5-must-have-gems-in-ror-development-environment.html" rel="alternate" type="text/html" title="5 Must have gems in Ruby on Rails development environment." /><published>2021-04-26T02:30:00+00:00</published><updated>2021-04-26T02:30:00+00:00</updated><id>https://deepakmahakale.com/blog/2021/04/26/5-must-have-gems-in-ror-development-environment</id><content type="html" xml:base="https://deepakmahakale.com/blog/2021/04/26/5-must-have-gems-in-ror-development-environment.html"><![CDATA[<p>I have been developing rails applications since 2014.
+I started my career with rails and since then I have worked on numerous
+rails projects.</p>
+
+<p>These are a few gems that I like to add to almost all of my projects
+(including the personal projects).
+These gems definitely increase productivity and make the developer’s
+life easier.</p>
+
+<p>These are my top 5 gems you should have in your development environment.</p>
+
+<!--more-->
+
+<h3 id="1-xray-rails">#1. <a href="https://github.com/brentd/xray-rails" target="_blank">Xray-rails</a></h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'xray-rails'</span><span class="p">,</span> <span class="ss">group: </span><span class="s1">'development'</span>
+</code></pre></div></div>
+
+<p>As the name suggests this gem helps you see the xray of your application.</p>
+
+<p>It will show you all the rendered partials on the current page with <strong>⌘+shift+x</strong>(Mac) or <strong>ctrl+shift+x</strong>.</p>
+
+<p><img src="/blog/assets/images/posts/xray-rails.png" alt="Xray-Rails" loading="lazy" /></p>
+
+<p>Interestingly, you can click on the overlay and the partial will be opened in your editor.</p>
+
+<p>The default editor is sublime but you can always configure the editor of choice.
+Add the following in <code class="language-plaintext highlighter-rouge">~/.xrayconfig</code></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">:editor</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/usr/local/bin/code'</span> <span class="c1"># VSCode</span>
+<span class="c1"># :editor: '/usr/local/bin/subl' # Sublime</span>
+</code></pre></div></div>
+
+<h3 id="2-rubocop">#2. <a href="https://github.com/rubocop/rubocop" target="_blank">RuboCop</a></h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'rubocop'</span><span class="p">,</span> <span class="ss">require: </span><span class="kp">false</span>
+</code></pre></div></div>
+
+<p>I believe this gem requires no introduction. But still, in case you haven’t heard of it - rubocop is a linter for ruby.</p>
+
+<p>The above line is an understatement because rubocop doesn’t just lint your code
+or reports the problem in your code.
+But, rubocop can actually fix most of the issues automatically.</p>
+
+<p>A true lifesaver.</p>
+
+<p>To lint your code you can run the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check all the ruby files in the project</span>
+rubocop
+
+<span class="c"># Check a specific file</span>
+rubocop app/models/user.rb
+
+<span class="c"># Check and fix the issues that can be autocorrected</span>
+rubocop <span class="nt">-a</span>
+</code></pre></div></div>
+
+<p>extensions for editors like sublime and VSCode are also available.</p>
+
+<p><img src="/blog/assets/images/posts/rubocop.png" alt="rubocop vscode extension" loading="lazy" /></p>
+
+<h3 id="3-bullet">#3. <a href="https://github.com/flyerhzm/bullet" target="_blank">Bullet</a></h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'bullet'</span><span class="p">,</span> <span class="ss">group: </span><span class="s1">'development'</span>
+</code></pre></div></div>
+
+<p>Bullet gem helps you detect the <strong>N+1</strong> queries while early in the development cycle.
+It helps identify the queries which are causing <strong>N+1</strong> queries and helps you fix them before the code hits production.</p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;tbody&gt;</span>
+  <span class="cp">&lt;%</span> <span class="vi">@posts</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">title</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">body</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">author</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/tbody&gt;</span>
+</code></pre></div></div>
+
+<p>This is an example of an N+1 query report by the bullet gem</p>
+
+<pre><code class="language-log">user: deepak
+GET /posts
+USE eager loading detected
+  Post =&gt; [:author]
+  Add to your query: .includes([:author])
+Call stack
+  /Users/deepak/workspace/rails-versions/rails-6-1/app/views/posts/index.html.erb:19:in `block in _app_views_posts_index_html_erb___4164323537883834576_18480'
+  /Users/deepak/workspace/rails-versions/rails-6-1/app/views/posts/index.html.erb:15:in `_app_views_posts_index_html_erb___4164323537883834576_18480'
+</code></pre>
+
+<h3 id="4-awesome-print">#4. <a href="https://github.com/awesome-print/awesome_print" target="_blank">Awesome Print</a></h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'awesome_print'</span><span class="p">,</span> <span class="ss">group: </span><span class="s1">'development'</span>
+</code></pre></div></div>
+
+<p><strong>Awesome Print</strong> pretty prints the Ruby objects in full color with indentation.</p>
+
+<p>example:</p>
+
+<p>Do this in the console and you will get a pretty representation with all the attributes of the post object.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"awesome_print"</span>
+<span class="n">ap</span> <span class="no">Post</span><span class="p">.</span><span class="nf">last</span>
+</code></pre></div></div>
+
+<p>This is an example of how the post object looks</p>
+
+<p><img src="/blog/assets/images/posts/awesome_print.png" alt="awesome_print" loading="lazy" /></p>
+
+<p>To avoid requiring it every time you start the console you can do the following:</p>
+
+<p>Add the following in your <code class="language-plaintext highlighter-rouge">~/.irbrc</code></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'awesome_print'</span>
+<span class="no">AwesomePrint</span><span class="p">.</span><span class="nf">irb!</span>
+</code></pre></div></div>
+
+<p>Remember, you can always comment these lines if you ever decide to manually
+require awesome_print.</p>
+
+<h3 id="5-rspec-rails">#5. <a href="https://github.com/rspec/rspec-rails" target="_blank">Rspec-rails</a></h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'rspec-rails'</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Last but not least <code class="language-plaintext highlighter-rouge">rspec-rails</code> is a must to ensure your application is
+well tested and to avoid introducing any unintended bugs in the existing features.</p>
+
+<p>RSpec also provides a lot of methods to test various scenarios. Visit the GitHub repository of rspec-rails for the list of available <a href="https://github.com/rspec/rspec-rails#helpful-rails-matchers">matchers</a></p>
+
+<p>Make sure to run the following command once you have installed the gem.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rails generate rspec:install
+      create  .rspec
+      create  spec
+      create  spec/spec_helper.rb
+      create  spec/rails_helper.rb
+</code></pre></div></div>
+
+<p>This will generate a few files and ensure that the next time you generate a
+scaffold the test files for the same are generated automatically.</p>
+
+<p>You may want to add the following in <code class="language-plaintext highlighter-rouge">.rspec</code> to avoid requiring <code class="language-plaintext highlighter-rouge">rails_helper</code> in every test file and for better output of the test results.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--color
+--require rails_helper
+--format documentation
+</code></pre></div></div>]]></content><author><name>{&quot;twitter&quot;=&gt;&quot;deepakmahakale&quot;}</name></author><category term="ruby" /><category term="rubygems" /><summary type="html"><![CDATA[Top 5 must have gems to increase productivity and make the developer's life easier.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://deepakmahakale.com/blog/assets/images/5-must-have-gems-in-ror-development-environment.jpg" /><media:content medium="image" url="https://deepakmahakale.com/blog/assets/images/5-must-have-gems-in-ror-development-environment.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">A step by step guide to upgrade rails 4 application to rails 5</title><link href="https://deepakmahakale.com/blog/2020/07/04/guide-to-upgrade-rails-application.html" rel="alternate" type="text/html" title="A step by step guide to upgrade rails 4 application to rails 5" /><published>2020-07-04T16:30:00+00:00</published><updated>2020-07-04T16:30:00+00:00</updated><id>https://deepakmahakale.com/blog/2020/07/04/guide-to-upgrade-rails-application</id><content type="html" xml:base="https://deepakmahakale.com/blog/2020/07/04/guide-to-upgrade-rails-application.html"><![CDATA[<p>Upgrading an application can be tedious if you don’t have good test coverage.</p>
+
+<p>This article covers the common issues you might face while upgrading the from rails 4 to 5.</p>
+
+<p>If you are upgrading to ruby 2.7 export <code class="language-plaintext highlighter-rouge">RUBYOPT="-W0"</code> to avoid getting your screen filled up with deprecations warnings</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">RUBYOPT</span><span class="o">=</span><span class="s2">"-W0"</span>
+
+bundle <span class="nb">exec </span>rspec
+
+<span class="c"># OR use</span>
+
+<span class="nv">RUBYOPT</span><span class="o">=</span><span class="s2">"-W0"</span> bundle <span class="nb">exec </span>rspec
+</code></pre></div></div>
+
+<!--more-->
+
+<h2 id="step-1-upgrading-ruby-and-bundle-install">Step 1: Upgrading ruby and bundle install</h2>
+
+<ul>
+  <li>
+    <p>Install the required ruby version</p>
+
+    <ul>
+      <li>
+        <p>rvm</p>
+
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm <span class="nb">install </span>ruby 2.x.x
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>rbenv</p>
+
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv <span class="nb">install </span>2.x.x
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Change the ruby version in <code class="language-plaintext highlighter-rouge">.ruby-version</code>, <code class="language-plaintext highlighter-rouge">.rvmrc</code> or <code class="language-plaintext highlighter-rouge">Gemfile</code>.</p>
+  </li>
+  <li>
+    <p>Install <code class="language-plaintext highlighter-rouge">bundler</code></p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>bundler
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Change the rails version</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Gemfile</span>
+<span class="n">gem</span> <span class="s1">'rails'</span><span class="p">,</span> <span class="s1">'4.2.0'</span>
+<span class="c1"># To</span>
+<span class="n">gem</span> <span class="s1">'rails'</span><span class="p">,</span> <span class="s1">'5.2.4'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>run bundle install</p>
+
+    <p>If you don’t need specific versions of the gems locked it is better to remove the specified version.</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Additional Note: (<code class="language-plaintext highlighter-rouge">ruby 2.7</code>)</p>
+
+    <p>Ruby 2.7 has removed these gems which were default in prior versions.</p>
+
+    <p>Add the following gems to your gemfile</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'e2mmap'</span>
+<span class="n">gem</span> <span class="s1">'scanf'</span>
+<span class="n">gem</span> <span class="s1">'thwait'</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="step-2-config-changes">Step 2: Config changes</h2>
+
+<p>At this point you should be able to install all the dependencies.
+But, in order to start the application we need to do some config changes.</p>
+
+<ul>
+  <li>
+    <p><strong>Remove</strong></p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/application.rb</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">active_record</span><span class="p">.</span><span class="nf">raise_in_transactional_callbacks</span> <span class="o">=</span> <span class="kp">true</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Change</strong></p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/application.rb</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">serve_static_assets</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="c1"># or</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">serve_static_files</span> <span class="o">=</span> <span class="kp">true</span>
+
+<span class="c1"># to</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">public_file_server</span><span class="p">.</span><span class="nf">enabled</span>
+</code></pre></div>    </div>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/application.rb</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">static_cache_control</span> <span class="o">=</span> <span class="s1">'public, max-age=3600'</span>
+
+<span class="c1">#to</span>
+
+<span class="n">config</span><span class="p">.</span><span class="nf">public_file_server</span><span class="p">.</span><span class="nf">headers</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">'Cache-Control'</span> <span class="o">=&gt;</span> <span class="s1">'public, max-age=3600'</span> <span class="p">}</span>
+</code></pre></div>    </div>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># routes.rb</span>
+<span class="no">ProjectName</span><span class="o">::</span><span class="no">Application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+
+<span class="c1"># to</span>
+
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Create</strong> <code class="language-plaintext highlighter-rouge">config/initializers/assets.rb</code></p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/initializers/assets.rb</span>
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">assets</span><span class="p">.</span><span class="nf">version</span> <span class="o">=</span> <span class="s1">'1.0'</span>
+
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">assets</span><span class="p">.</span><span class="nf">precompile</span> <span class="o">+=</span> <span class="p">[</span>
+  <span class="s1">'application.css'</span><span class="p">,</span> <span class="s1">'application.js'</span>
+<span class="p">]</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="step-3-model--controller-changes">Step 3: Model &amp; Controller changes</h2>
+
+<h3 id="controllers">Controllers</h3>
+
+<ul>
+  <li>
+    <p>Replace all <code class="language-plaintext highlighter-rouge">*_filter</code> callbacks in favor of <code class="language-plaintext highlighter-rouge">*_action</code></p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">before_filter</span>
+<span class="n">skip_before_filter</span>
+
+<span class="c1"># to</span>
+
+<span class="n">before_action</span>
+<span class="n">skip_before_action</span>
+</code></pre></div>    </div>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">redirect_to</span><span class="p">(</span><span class="ss">:back</span><span class="p">)</span>
+
+<span class="c1"># to</span>
+
+<span class="n">redirect_back</span><span class="p">(</span><span class="ss">fallback_location: </span><span class="n">root_path</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="models">Models</h3>
+
+<ul>
+  <li>
+    <p>Models now inherit from <code class="language-plaintext highlighter-rouge">ApplicationRecord</code></p>
+
+    <ul>
+      <li>
+        <p><strong>Create</strong></p>
+
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/models/application_record.rb</span>
+<span class="k">class</span> <span class="nc">ApplicationRecord</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="nb">self</span><span class="p">.</span><span class="nf">abstract_class</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="k">end</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><strong>Change</strong> the following in all models</p>
+
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+
+<span class="c1"># to</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">belongs_to</code> is compulsory now.</p>
+
+    <p>Use <code class="language-plaintext highlighter-rouge">optional: true</code> if the association is ever going to be <code class="language-plaintext highlighter-rouge">nil</code></p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">optional: </span><span class="kp">true</span>
+  <span class="c1">#....</span>
+</code></pre></div>    </div>
+
+    <p>:information_source: <strong>In a huge application you might want to keep the old behavior.
+You can change the settings globally in application.rb</strong></p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/application.rb</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">active_record</span><span class="p">.</span><span class="nf">belongs_to_required_by_default</span> <span class="o">=</span> <span class="kp">false</span>
+</code></pre></div>    </div>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">after_destroy</span> <span class="ss">:send_confirmation</span><span class="p">,</span> <span class="ss">if: </span><span class="s1">'user&amp;.notifications_enabled?'</span>
+
+<span class="n">after_destroy</span> <span class="ss">:send_confirmation</span><span class="p">,</span> <span class="ss">if: </span><span class="no">Proc</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="n">user</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">notifications_enabled?</span> <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>attribute_changed? is deprecated in after_save callback</p>
+
+    <blockquote>
+      <p>Deprecated: <attribute>_changed? doesn't work as expected in after_save &amp; after_update <br />
+Use saved_change_to_<attribute>?</attribute></attribute></p>
+    </blockquote>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Old</span>
+<span class="n">after_save</span> <span class="ss">:send_email</span><span class="p">,</span> <span class="ss">if: :email_changed?</span>
+
+<span class="c1"># New</span>
+<span class="n">after_save</span> <span class="ss">:send_email</span><span class="p">,</span> <span class="ss">if: </span><span class="o">-&gt;</span> <span class="p">{</span> <span class="n">saved_change_to_email?</span> <span class="p">}</span>
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>Deprecated: <attribute>_was doesn't work as expected in after_save &amp; after_update <br />
+Use <attribute>_before_last_save</attribute></attribute></p>
+    </blockquote>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Old</span>
+<span class="n">archived_record</span><span class="p">.</span><span class="nf">assign_attributes</span><span class="p">(</span><span class="ss">email: </span><span class="n">email_was</span><span class="p">)</span>
+
+<span class="c1"># New</span>
+<span class="n">archived_record</span><span class="p">.</span><span class="nf">assign_attributes</span><span class="p">(</span><span class="ss">email: </span><span class="n">email_before_last_save</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>AASM if you’re upgrading aasm from 3 -&gt; 4</p>
+
+    <p>Follow this guide - <a href="https://github.com/aasm/aasm/blob/master/README_FROM_VERSION_3_TO_4.md" target="_blank">Upgrading AASM from version 3 to 4</a></p>
+  </li>
+</ul>
+
+<h3 id="mailers">Mailers</h3>
+
+<ul>
+  <li>
+    <p>Mailers now inherit from ApplicationMailer</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/mailers/application_mailer.rb</span>
+<span class="k">class</span> <span class="nc">ApplicationMailer</span> <span class="o">&lt;</span> <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">default</span> <span class="ss">from: </span><span class="s2">"sample@</span><span class="si">#{</span><span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">smtp_settings</span><span class="p">[</span><span class="ss">:domain</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UserMailer</span> <span class="o">&lt;</span> <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span>
+<span class="c1"># to</span>
+<span class="k">class</span> <span class="nc">UserMailer</span> <span class="o">&lt;</span> <span class="no">ApplicationMailer</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="step-4-migration-changes">Step 4: Migration changes</h2>
+
+<blockquote>
+  <p>Directly inheriting from ActiveRecord::Migration is not supported.<br />
+Please specify the Rails release the migration was written for:</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Change the following</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+
+<span class="c1"># to</span>
+
+<span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">4.2</span><span class="p">]</span>
+</code></pre></div>    </div>
+
+    <p>:information_source: <strong>Easy fix</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">grep</span> <span class="nt">-rl</span> <span class="s2">"ActiveRecord::Migration$"</span> db | xargs <span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"s/ActiveRecord::Migration/ActiveRecord::Migration[4.2]/g"</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="step-5-necessary-changes-in-rspec">Step 5: Necessary changes in RSpec</h2>
+
+<h3 id="rspec">RSpec</h3>
+
+<ul>
+  <li>
+    <p>Upgrading FactoryBot to 5</p>
+
+    <blockquote>
+      <p>DEPRECATION WARNING: Static attributes will be removed in FactoryBot 5.0.<br />
+Please use dynamic attributes instead by wrapping the attribute value
+in a block:</p>
+    </blockquote>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">FactoryBot</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span>
+  <span class="n">factory</span> <span class="ss">:user</span> <span class="k">do</span>
+    <span class="nb">name</span> <span class="s1">'John'</span>         <span class="c1"># Bad &amp; will throw error</span>
+    <span class="c1"># To</span>
+    <span class="nb">name</span> <span class="p">{</span> <span class="s1">'John'</span> <span class="p">}</span>     <span class="c1"># Good</span>
+</code></pre></div>    </div>
+
+    <p>:information_source: <strong>Easy Fix:</strong></p>
+
+    <p>use <code class="language-plaintext highlighter-rouge">rubocop</code> to auto fix the format</p>
+
+    <p>Ref: <a href="https://thoughtbot.com/blog/deprecating-static-attributes-in-factory_bot-4-11" target="_blank">https://thoughtbot.com/blog/deprecating-static-attributes-in-factory_bot-4-11</a></p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rubocop <span class="nt">-a</span> spec/factories/xyz.rb <span class="nt">--only</span> FactoryBot/AttributeDefinedStatically
+</code></pre></div>    </div>
+
+    <p>Make sure to comment the following in <code class="language-plaintext highlighter-rouge">rubocop.yml</code> temporarily</p>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">AllCops</span><span class="pi">:</span>
+  <span class="na">Exclude</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">spec/**/*'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Fix controller specs</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">id: </span><span class="n">request</span><span class="p">.</span><span class="nf">id</span>
+<span class="n">xhr</span> <span class="ss">:get</span><span class="p">,</span> <span class="ss">:summary</span><span class="p">,</span> <span class="ss">id: </span><span class="n">request</span><span class="p">.</span><span class="nf">id</span>
+
+<span class="c1"># to</span>
+
+<span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">id: </span><span class="n">request</span><span class="p">.</span><span class="nf">id</span> <span class="p">}</span>
+<span class="n">get</span> <span class="ss">:summary</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">id: </span><span class="n">request</span><span class="p">.</span><span class="nf">id</span> <span class="p">},</span> <span class="ss">xhr: </span><span class="kp">true</span>
+</code></pre></div>    </div>
+
+    <p>:information_source: This gem does it for you - <a href="https://github.com/tjgrathwell/rails5-spec-converter" target="_blank">rails5-spec-converter</a></p>
+  </li>
+</ul>
+
+<h2 id="additional-issues-you-might-get-while-running-rspec">Additional Issues you might get while running RSpec</h2>
+
+<ul>
+  <li>
+    <p>undefined method ‘sort’ for <code class="language-plaintext highlighter-rouge">#&lt;ActionController::Parameters:&gt;</code></p>
+
+    <p>Do not use Hash methods on params</p>
+  </li>
+</ul>]]></content><author><name>{&quot;twitter&quot;=&gt;&quot;deepakmahakale&quot;}</name></author><category term="rails" /><category term="rails-upgrade" /><summary type="html"><![CDATA[Upgrading an application can be tedious if you don't have good test coverage. This article covers the common issues you might face while upgrading the from rails 4 to 5.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://deepakmahakale.com/blog/assets/images/guide-to-upgrade-rails-application.png" /><media:content medium="image" url="https://deepakmahakale.com/blog/assets/images/guide-to-upgrade-rails-application.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Elasticsearch::Model - Partial update with custom callbacks</title><link href="https://deepakmahakale.com/blog/2018/04/21/elasticsearch-model-partial-update-with-custom-callbacks.html" rel="alternate" type="text/html" title="Elasticsearch::Model - Partial update with custom callbacks" /><published>2018-04-21T16:58:35+00:00</published><updated>2018-04-21T16:58:35+00:00</updated><id>https://deepakmahakale.com/blog/2018/04/21/elasticsearch-model-partial-update-with-custom-callbacks</id><content type="html" xml:base="https://deepakmahakale.com/blog/2018/04/21/elasticsearch-model-partial-update-with-custom-callbacks.html"><![CDATA[<p>If you want to partially update the documents on Elasticsearch you can include <code class="language-plaintext highlighter-rouge">Elasticsearch::Model::Callbacks</code> module.</p>
+
+<p>You can also perform partial update with custom callbacks instead of indexing the whole document.</p>
+
+<blockquote>
+  <p>Elasticsearch Version - 5.3</p>
+</blockquote>
+
+<h2 id="partially-update-a-document">Partially update a document</h2>
+
+<p>There is <a href="https://github.com/elastic/elasticsearch-rails/blob/7815039c0f78ed0b9b896936875ee4d01855390e/elasticsearch-model/lib/elasticsearch/model/indexing.rb#L432-L439" target="_blank"><code class="language-plaintext highlighter-rouge">update_document_attributes</code></a> method in <code class="language-plaintext highlighter-rouge">Elasticsearch::Model</code> which is used for partial update but it’s not documented.
+You can still use the method to perform the partial update.
+<!--more--></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># https://github.com/elastic/elasticsearch-rails/blob/7815039c0f78ed0b9b896936875ee4d01855390e/elasticsearch-model/lib/elasticsearch/model/indexing.rb#L432-L439</span>
+<span class="k">def</span> <span class="nf">update_document_attributes</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+  <span class="n">client</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span>
+    <span class="p">{</span> <span class="ss">index: </span><span class="n">index_name</span><span class="p">,</span>
+      <span class="ss">type:  </span><span class="n">document_type</span><span class="p">,</span>
+      <span class="ss">id:    </span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+      <span class="ss">body:  </span><span class="p">{</span> <span class="ss">doc: </span><span class="n">attributes</span> <span class="p">}</span> <span class="p">}.</span><span class="nf">merge</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>You can use this method in a callback to update the document manually.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="kp">include</span> <span class="no">Elasticsearch</span><span class="o">::</span><span class="no">Model</span>
+  <span class="n">after_update</span> <span class="ss">:update_first_name</span><span class="p">,</span> <span class="ss">if: </span><span class="o">-&gt;</span> <span class="p">{</span> <span class="n">first_name_changed?</span> <span class="p">}</span>
+
+  <span class="c1">#...</span>
+
+  <span class="k">def</span> <span class="nf">update_first_name</span>
+    <span class="n">__elasticsearch__</span><span class="p">.</span><span class="nf">update_document_attributes</span><span class="p">({</span><span class="ss">first_name: </span><span class="s1">'John'</span><span class="p">})</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</code></pre></div></div>
+
+<p>This will made a update call only with the changed field</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">2018</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">21</span> <span class="mi">22</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">25</span> <span class="o">+</span><span class="mo">0530</span><span class="p">:</span> <span class="no">POST</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="n">localhost</span><span class="p">:</span><span class="mi">9200</span><span class="o">/</span><span class="n">test_users</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="n">_update</span> <span class="p">[</span><span class="n">status</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span><span class="mf">0.005</span><span class="n">s</span><span class="p">,</span> <span class="n">query</span><span class="ss">:n</span><span class="o">/</span><span class="n">a</span><span class="p">]</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">21</span> <span class="mi">22</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">25</span> <span class="o">+</span><span class="mo">0530</span><span class="p">:</span> <span class="o">&gt;</span> <span class="p">{</span><span class="s2">"doc"</span><span class="p">:{</span><span class="s2">"first_name"</span><span class="p">:</span> <span class="s2">"John"</span><span class="p">}}</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">21</span> <span class="mi">22</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">25</span> <span class="o">+</span><span class="mo">0530</span><span class="p">:</span> <span class="o">&lt;</span> <span class="p">{</span><span class="s2">"_index"</span><span class="ss">:"test_users"</span><span class="p">,</span><span class="s2">"_type"</span><span class="ss">:"user"</span><span class="p">,</span><span class="s2">"_id"</span><span class="ss">:"1"</span><span class="p">,</span><span class="s2">"_version"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s2">"result"</span><span class="ss">:"noop"</span><span class="p">,</span><span class="s2">"_shards"</span><span class="p">:{</span><span class="s2">"total"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"successful"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"failed"</span><span class="p">:</span><span class="mi">0</span><span class="p">}}</span>
+</code></pre></div></div>
+
+<p>as opposed to the one with <code class="language-plaintext highlighter-rouge">index_document</code></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">2018</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">21</span> <span class="mi">22</span><span class="p">:</span><span class="mi">37</span><span class="p">:</span><span class="mi">51</span> <span class="o">+</span><span class="mo">0530</span><span class="p">:</span> <span class="no">PUT</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="n">localhost</span><span class="p">:</span><span class="mi">9200</span><span class="o">/</span><span class="n">test_users</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="n">status</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span><span class="mf">0.104</span><span class="n">s</span><span class="p">,</span> <span class="n">query</span><span class="ss">:n</span><span class="o">/</span><span class="n">a</span><span class="p">]</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">21</span> <span class="mi">22</span><span class="p">:</span><span class="mi">37</span><span class="p">:</span><span class="mi">51</span> <span class="o">+</span><span class="mo">0530</span><span class="p">:</span> <span class="o">&gt;</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"first_name"</span><span class="ss">:"John"</span><span class="p">,</span><span class="s2">"last_name"</span><span class="ss">:"Snow"</span><span class="p">,</span><span class="s2">"email"</span><span class="ss">:"john@winterfell.com"</span><span class="p">}</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">21</span> <span class="mi">22</span><span class="p">:</span><span class="mi">37</span><span class="p">:</span><span class="mi">51</span> <span class="o">+</span><span class="mo">0530</span><span class="p">:</span> <span class="o">&lt;</span> <span class="p">{</span><span class="s2">"_index"</span><span class="ss">:"test_users"</span><span class="p">,</span><span class="s2">"_type"</span><span class="ss">:"user"</span><span class="p">,</span><span class="s2">"_id"</span><span class="ss">:"1"</span><span class="p">,</span><span class="s2">"_version"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="s2">"result"</span><span class="ss">:"updated"</span><span class="p">,</span><span class="s2">"_shards"</span><span class="p">:{</span><span class="s2">"total"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"successful"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">"failed"</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span><span class="s2">"created"</span><span class="ss">:false</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>This method allows you to partially update the document even if you are using custom callbacks.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.3/index.html" target="_blank">Elasticsearch official documentation</a></li>
+  <li><a href="https://github.com/elastic/elasticsearch-rails/tree/master/elasticsearch-model" target="_blank">Elasticsearch::Model</a></li>
+</ul>]]></content><author><name>{&quot;twitter&quot;=&gt;&quot;deepakmahakale&quot;}</name></author><category term="ruby" /><category term="elasticsearch" /><summary type="html"><![CDATA[If you want to partially update the documents on Elasticsearch you can include Elasticsearch::Model::Callbacks module. You can also perform partial update with custom callbacks instead of indexing the whole document. Elasticsearch Version - 5.3 Partially update a document There is update_document_attributes method in Elasticsearch::Model which is used for partial update but it’s not documented. You can still use the method to perform the partial update.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" /><media:content medium="image" url="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Rails and TimeZone issue with query</title><link href="https://deepakmahakale.com/blog/2018/04/21/rails-and-timezone-issue-with-query.html" rel="alternate" type="text/html" title="Rails and TimeZone issue with query" /><published>2018-04-21T07:38:58+00:00</published><updated>2018-04-21T07:38:58+00:00</updated><id>https://deepakmahakale.com/blog/2018/04/21/rails-and-timezone-issue-with-query</id><content type="html" xml:base="https://deepakmahakale.com/blog/2018/04/21/rails-and-timezone-issue-with-query.html"><![CDATA[<p>You must have faced timezone issue if you work with the application in different timezone.
+ActiveRecord does take care of the timezone while creating, updating or querying the records.
+The DateTime is converted to UTC before the query is executed.</p>
+
+<p>You will face issue if you are using raw queries or passing <code class="language-plaintext highlighter-rouge">String</code> instead of <code class="language-plaintext highlighter-rouge">DateTime</code>.
+<!--more--></p>
+
+<h3 id="datetime-conversion-while-creating-the-records">DateTime conversion while creating the records</h3>
+
+<p>Let’s create a few records in database to see how ActiveRecord converts the DateTime while creating the record.</p>
+
+<p>We are going to create following records:</p>
+<ol>
+  <li>Today: beginning of day</li>
+  <li>Today: end of day</li>
+  <li>Tomorrow: beginning of day</li>
+</ol>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">today_beginning</span> <span class="o">=</span> <span class="s1">'2018-04-21 00:00:00'</span><span class="p">.</span><span class="nf">to_time</span>
+<span class="c1">#=&gt; 2018-04-21 00:00:00 +0530</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">text: </span><span class="s1">'Today: beginning of day'</span><span class="p">,</span> <span class="ss">created_at: </span><span class="n">today_beginning</span><span class="p">,</span> <span class="ss">updated_at: </span><span class="n">today_beginning</span><span class="p">)</span>
+  <span class="no">SQL</span> <span class="p">(</span><span class="mf">1.0</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="s2">"messages"</span> <span class="p">(</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"updated_at"</span><span class="p">)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="sc">?,</span> <span class="p">?,</span> <span class="sc">?)</span>  <span class="p">[[</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"Today: beginning of day"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"2018-04-20 18:30:00"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"updated_at"</span><span class="p">,</span> <span class="s2">"2018-04-20 18:30:00"</span><span class="p">]]</span>
+<span class="c1">#&lt;Message:0x000000000404b5d8&gt; {</span>
+            <span class="p">:</span><span class="nb">id</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: beginning of day"</span><span class="p">,</span>
+    <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+    <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+<span class="p">}</span>
+
+<span class="n">today_end</span> <span class="o">=</span> <span class="s1">'2018-04-21 23:59:59'</span><span class="p">.</span><span class="nf">to_time</span>
+<span class="c1">#=&gt; 2018-04-21 23:59:59 +0530</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">text: </span><span class="s1">'Today: end of day'</span><span class="p">,</span> <span class="ss">created_at: </span><span class="n">today_end</span><span class="p">,</span> <span class="ss">updated_at: </span><span class="n">today_end</span><span class="p">)</span>
+  <span class="no">SQL</span> <span class="p">(</span><span class="mf">8.0</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="s2">"messages"</span> <span class="p">(</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"updated_at"</span><span class="p">)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="sc">?,</span> <span class="p">?,</span> <span class="sc">?)</span>  <span class="p">[[</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"Today: end of day"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"2018-04-21 18:29:59"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"updated_at"</span><span class="p">,</span> <span class="s2">"2018-04-21 18:29:59"</span><span class="p">]]</span>
+<span class="c1">#&lt;Message:0x00000000027d2588&gt; {</span>
+            <span class="p">:</span><span class="nb">id</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+    <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+    <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+<span class="p">}</span>
+
+<span class="n">tomorrow_beginning</span> <span class="o">=</span> <span class="s1">'2018-04-22 00:00:00'</span><span class="p">.</span><span class="nf">to_time</span>
+<span class="c1">#=&gt; 2018-04-22 00:00:00 +0530</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">text: </span><span class="s1">'Tomorrow: beginning of day'</span><span class="p">,</span> <span class="ss">created_at: </span><span class="n">tomorrow_beginning</span><span class="p">,</span> <span class="ss">updated_at: </span><span class="n">tomorrow_beginning</span><span class="p">)</span>
+  <span class="no">SQL</span> <span class="p">(</span><span class="mf">1.4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="s2">"messages"</span> <span class="p">(</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"updated_at"</span><span class="p">)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="sc">?,</span> <span class="p">?,</span> <span class="sc">?)</span>  <span class="p">[[</span><span class="s2">"text"</span><span class="p">,</span> <span class="s2">"Tomorrow: beginning of day"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"2018-04-21 18:30:00"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"updated_at"</span><span class="p">,</span> <span class="s2">"2018-04-21 18:30:00"</span><span class="p">]]</span>
+<span class="c1">#&lt;Message:0x0000000005092cc0&gt; {</span>
+            <span class="p">:</span><span class="nb">id</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Tomorrow: beginning of day"</span><span class="p">,</span>
+    <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">22</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+    <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">22</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice that ActiveRecord changed the time from <code class="language-plaintext highlighter-rouge">Sat, 21 Apr 2018 00:00:00 IST +05:30</code> to <code class="language-plaintext highlighter-rouge">2018-04-20 18:30:00</code> before executing the query.</p>
+
+<h3 id="datetime-conversion-while-fetching-the-records">DateTime conversion while fetching the records</h3>
+
+<p>Let’s query on the records we have just created.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">beginning_of_day</span>
+<span class="c1">#=&gt; Sat, 21 Apr 2018 00:00:00 IST +05:30</span>
+
+<span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">end_of_day</span>
+<span class="c1">#=&gt; Sat, 21 Apr 2018 23:59:59 IST +05:30</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">created_at: </span><span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">beginning_of_day</span><span class="o">..</span><span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">end_of_day</span><span class="p">)</span>
+  <span class="no">Message</span> <span class="no">Load</span> <span class="p">(</span><span class="mf">0.2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">"messages"</span><span class="p">.</span><span class="nf">*</span> <span class="no">FROM</span> <span class="s2">"messages"</span> <span class="no">WHERE</span> <span class="p">(</span><span class="s2">"messages"</span><span class="o">.</span><span class="s2">"created_at"</span> <span class="no">BETWEEN</span> <span class="p">?</span> <span class="no">AND</span> <span class="p">?)</span>  <span class="p">[[</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"2018-04-20 18:30:00"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"2018-04-21 18:29:59.999999"</span><span class="p">]]</span>
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004efb380&gt; {</span>
+                <span class="p">:</span><span class="nb">id</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: beginning of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004efb1f0&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s2">"created_at BETWEEN ? AND ?"</span><span class="p">,</span> <span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">beginning_of_day</span><span class="p">,</span> <span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">end_of_day</span><span class="p">)</span>
+  <span class="no">Message</span> <span class="no">Load</span> <span class="p">(</span><span class="mf">0.4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">"messages"</span><span class="p">.</span><span class="nf">*</span> <span class="no">FROM</span> <span class="s2">"messages"</span> <span class="no">WHERE</span> <span class="p">(</span><span class="n">created_at</span> <span class="no">BETWEEN</span> <span class="s1">'2018-04-20 18:30:00'</span> <span class="no">AND</span> <span class="s1">'2018-04-21 18:29:59.999999'</span><span class="p">)</span>
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004eb6028&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: beginning of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004eb5e48&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>This works if you are passing the <code class="language-plaintext highlighter-rouge">DateTime</code> object.
+But you will get the incorrect result when you pass <code class="language-plaintext highlighter-rouge">String</code>. You can see the TimeZone in the string but ActiveRecord will not convert the time to UTC.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">beginning_of_day</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="c1">#=&gt; "2018-04-21 00:00:00 +0530"</span>
+
+<span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">end_of_day</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="c1">#=&gt; "2018-04-21 23:59:59 +0530"</span>
+
+<span class="no">Message</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s2">"created_at BETWEEN ? AND ?"</span><span class="p">,</span> <span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">beginning_of_day</span><span class="p">.</span><span class="nf">to_s</span><span class="p">,</span> <span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">end_of_day</span><span class="p">.</span><span class="nf">to_s</span><span class="p">)</span>
+  <span class="no">Message</span> <span class="no">Load</span> <span class="p">(</span><span class="mf">0.2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">"messages"</span><span class="p">.</span><span class="nf">*</span> <span class="no">FROM</span> <span class="s2">"messages"</span> <span class="no">WHERE</span> <span class="p">(</span><span class="n">created_at</span> <span class="no">BETWEEN</span> <span class="s1">'2018-04-21 00:00:00 +0530'</span> <span class="no">AND</span> <span class="s1">'2018-04-21 23:59:59 +0530'</span><span class="p">)</span>
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004e10df8&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#&lt;Message:0x0000000004e10c40&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Tomorrow: beginning of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">22</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">22</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>ActiveRecord assumes that the time is already in UTC and executes the query without changing the time.</p>
+
+<h3 id="how-to-avoid-timezone-issue-in-raw-sql-query">How to avoid timezone issue in raw SQL query.</h3>
+
+<h3 id="-solution-1-if-possible-use-find_by_sql"># Solution 1: If possible use <code class="language-plaintext highlighter-rouge">find_by_sql</code></h3>
+
+<p>To avoid SQL injection you can use <code class="language-plaintext highlighter-rouge">find_by_sql</code>. Pass the values and it will be converted to proper timezone.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Message</span><span class="p">.</span><span class="nf">find_by_sql</span><span class="p">([</span><span class="s2">"SELECT * FROM messages where created_at BETWEEN ? AND ?"</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">])</span>
+  <span class="no">Message</span> <span class="no">Load</span> <span class="p">(</span><span class="mf">1.0</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="o">*</span> <span class="no">FROM</span> <span class="n">messages</span> <span class="n">where</span> <span class="n">created_at</span> <span class="no">BETWEEN</span> <span class="s1">'2018-04-20 18:30:00'</span> <span class="no">AND</span> <span class="s1">'2018-04-21 18:29:59'</span>
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#&lt;Message:0x00000000045abb90&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: beginning of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#&lt;Message:0x00000000045aba50&gt; {</span>
+                <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sat</span><span class="p">,</span> <span class="mi">21</span> <span class="no">Apr</span> <span class="mi">2018</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="no">IST</span> <span class="o">+</span><span class="mo">05</span><span class="p">:</span><span class="mi">30</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+</code></pre></div></div>
+
+<h3 id="-solution-2-convert-the-time-to-utc-before-querying"># Solution 2: Convert the time to UTC before querying</h3>
+
+<p>If you have no other option but to use raw query and interpolate the values, convert the time to utc.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">start_time</span> <span class="o">=</span> <span class="s2">"2018-04-21 00:00:00"</span><span class="p">.</span><span class="nf">to_time</span><span class="p">.</span><span class="nf">utc</span>
+<span class="c1">#=&gt; 2018-04-20 18:30:00 UTC</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="s2">"2018-04-21 23:59:59"</span><span class="p">.</span><span class="nf">to_time</span><span class="p">.</span><span class="nf">utc</span>
+<span class="c1">#=&gt; 2018-04-21 18:29:59 UTC</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="o">&lt;&lt;~</span><span class="no">SQL</span><span class="sh">
+  SELECT *
+  FROM messages
+  WHERE created_at BETWEEN '</span><span class="si">#{</span><span class="n">start_time</span><span class="si">}</span><span class="sh">' AND '</span><span class="si">#{</span><span class="n">end_time</span><span class="si">}</span><span class="sh">';
+</span><span class="no">SQL</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+  <span class="p">(</span><span class="mf">0.8</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="o">*</span>
+  <span class="no">FROM</span> <span class="n">messages</span>
+  <span class="no">WHERE</span> <span class="n">created_at</span> <span class="no">BETWEEN</span> <span class="s1">'2018-04-20 18:30:00 UTC'</span> <span class="no">AND</span> <span class="s1">'2018-04-21 18:29:59 UTC'</span><span class="p">;</span>
+
+<span class="n">result</span><span class="p">.</span><span class="nf">as_json</span>
+
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">{</span>
+                <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="s2">"text"</span> <span class="o">=&gt;</span> <span class="s2">"Today: beginning of day"</span><span class="p">,</span>
+        <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-20 18:30:00"</span><span class="p">,</span>
+        <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-20 18:30:00"</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+                <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="s2">"text"</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:29:59"</span><span class="p">,</span>
+        <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:29:59"</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+</code></pre></div></div>
+
+<h3 id="-solution-3-postgresql-use-timestamp-with-time-zone"># Solution 3: [PostgreSQL] Use <code class="language-plaintext highlighter-rouge">TIMESTAMP WITH TIME ZONE</code></h3>
+
+<p>This is the way to tell postgres that the Time passed is in some timezone and you need to convert it to UTC first.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">start_time</span> <span class="o">=</span> <span class="s1">'2018-04-21 00:00:00'</span>
+<span class="c1">#=&gt; "2018-04-21 00:00:00"</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="s1">'2018-04-21 23:59:59'</span>
+<span class="c1">#=&gt; "2018-04-21 23:59:59"</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="o">&lt;&lt;~</span><span class="no">SQL</span><span class="sh">
+  SELECT *
+  FROM messages
+  WHERE created_at BETWEEN TIMESTAMP WITH TIME ZONE '</span><span class="si">#{</span><span class="n">start_time</span><span class="si">}</span><span class="sh">'
+                       AND TIMESTAMP WITH TIME ZONE '</span><span class="si">#{</span><span class="n">end_time</span><span class="si">}</span><span class="sh">';
+</span><span class="no">SQL</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+  <span class="p">(</span><span class="mf">1.2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="o">*</span>
+    <span class="no">FROM</span> <span class="n">messages</span>
+    <span class="no">WHERE</span> <span class="n">created_at</span> <span class="no">BETWEEN</span> <span class="no">TIMESTAMP</span> <span class="no">WITH</span> <span class="no">TIME</span> <span class="no">ZONE</span> <span class="s1">'2018-04-21 00:00:00'</span>
+                         <span class="no">AND</span> <span class="no">TIMESTAMP</span> <span class="no">WITH</span> <span class="no">TIME</span> <span class="no">ZONE</span> <span class="s1">'2018-04-21 23:59:59'</span><span class="p">;</span>
+
+<span class="n">result</span><span class="p">.</span><span class="nf">as_json</span>
+
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">{</span>
+                <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+              <span class="s2">"text"</span> <span class="o">=&gt;</span> <span class="s2">"Tomorrow: beginning of day"</span><span class="p">,</span>
+        <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:30:00"</span><span class="p">,</span>
+        <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:30:00"</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+                <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="s2">"text"</span> <span class="o">=&gt;</span> <span class="s2">"Today: end of day"</span><span class="p">,</span>
+        <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:29:59"</span><span class="p">,</span>
+        <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2018-04-21 18:29:59"</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="tldr">TL;DR</h3>
+
+<ol>
+  <li>Always use <a href="http://api.rubyonrails.org/classes/Time.html#method-c-current" target="_blank"><code class="language-plaintext highlighter-rouge">Time.current</code></a> or <a href="http://api.rubyonrails.org/classes/Date.html#method-c-current" target="_blank"><code class="language-plaintext highlighter-rouge">Date.current</code></a> while querying</li>
+  <li>Make sure to use <a href="http://api.rubyonrails.org/classes/Time.html#method-i-beginning_of_day" target="_blank"><code class="language-plaintext highlighter-rouge">beginning_of_day</code></a> &amp; <a href="http://api.rubyonrails.org/classes/Time.html#method-i-end_of_day" target="_blank"><code class="language-plaintext highlighter-rouge">end_of_day</code></a> if you need the records created for whole day.</li>
+  <li>Use <a href="http://api.rubyonrails.org/classes/ActiveRecord/Querying.html#method-i-find_by_sql" target="_blank"><code class="language-plaintext highlighter-rouge">find_by_sql</code></a> if possible.</li>
+  <li>Convert Date to UTC if you are using raw query.</li>
+  <li>Use <a href="https://www.postgresql.org/docs/9.1/static/datatype-datetime.html" target="_blank"><code class="language-plaintext highlighter-rouge">TIMESTAMP WITH TIME ZONE</code></a> in raw query if you are using PostgreSQL.</li>
+</ol>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="http://api.rubyonrails.org" target="_blank">http://api.rubyonrails.org</a></li>
+  <li><a href="https://www.postgresql.org" target="_blank">https://www.postgresql.org</a></li>
+</ul>]]></content><author><name>{&quot;twitter&quot;=&gt;&quot;deepakmahakale&quot;}</name></author><category term="rails" /><summary type="html"><![CDATA[You must have faced timezone issue if you work with the application in different timezone. ActiveRecord does take care of the timezone while creating, updating or querying the records. The DateTime is converted to UTC before the query is executed. You will face issue if you are using raw queries or passing String instead of DateTime.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" /><media:content medium="image" url="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Elasticsearch::Model - Put Mapping</title><link href="https://deepakmahakale.com/blog/2018/04/20/elasticsearch-model-put-mapping.html" rel="alternate" type="text/html" title="Elasticsearch::Model - Put Mapping" /><published>2018-04-20T08:08:58+00:00</published><updated>2018-04-20T08:08:58+00:00</updated><id>https://deepakmahakale.com/blog/2018/04/20/elasticsearch-model-put-mapping</id><content type="html" xml:base="https://deepakmahakale.com/blog/2018/04/20/elasticsearch-model-put-mapping.html"><![CDATA[<p>The PUT mapping API allows you to add fields to an existing index.
+This method is available with Elasticsearch::Model but it’s not documented.</p>
+
+<blockquote>
+  <p>Elasticsearch Version - 5.3</p>
+</blockquote>
+
+<h2 id="create-a-user-model">Create a User model</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> rails g model user first_name:string last_name:string email:string phone_number:string
+
+invoke  active_record
+  create    db/migrate/20180420162454_create_users.rb
+  create    app/models/user.rb
+
+<span class="o">&gt;</span> rake db:migrate
+</code></pre></div></div>
+<!--more-->
+
+<p>Seed the data</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">10</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span>
+  <span class="nb">name</span> <span class="o">=</span> <span class="no">Faker</span><span class="o">::</span><span class="no">Name</span><span class="p">.</span><span class="nf">first_name</span>
+  <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span>
+    <span class="ss">first_name: </span><span class="nb">name</span><span class="p">,</span>
+    <span class="ss">last_name: </span><span class="no">Faker</span><span class="o">::</span><span class="no">Name</span><span class="p">.</span><span class="nf">last_name</span><span class="p">,</span>
+    <span class="ss">email: </span><span class="no">Faker</span><span class="o">::</span><span class="no">Internet</span><span class="p">.</span><span class="nf">email</span><span class="p">(</span><span class="nb">name</span><span class="p">),</span>
+    <span class="ss">phone_number: </span><span class="no">Faker</span><span class="o">::</span><span class="no">PhoneNumber</span><span class="p">.</span><span class="nf">phone_number</span>
+  <span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="add-mapping">Add mapping</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/models/concerns/searchable.rb</span>
+<span class="k">module</span> <span class="nn">Searchable</span>
+  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
+
+  <span class="n">included</span> <span class="k">do</span>
+    <span class="kp">include</span> <span class="no">Elasticsearch</span><span class="o">::</span><span class="no">Model</span>
+    <span class="n">mapping</span> <span class="k">do</span>
+      <span class="n">indexes</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">type: :integer</span>
+      <span class="n">indexes</span> <span class="ss">:first_name</span><span class="p">,</span> <span class="ss">type: :text</span>
+      <span class="n">indexes</span> <span class="ss">:last_name</span><span class="p">,</span> <span class="ss">type: :text</span>
+      <span class="n">indexes</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">type: :text</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1">#app/models/user.rb</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="kp">include</span> <span class="no">Searchable</span>
+
+  <span class="k">def</span> <span class="nf">as_indexed_json</span><span class="p">(</span><span class="n">_options</span> <span class="o">=</span> <span class="p">{})</span>
+    <span class="n">as_json</span><span class="p">(</span><span class="ss">only: </span><span class="sx">%i[id first_name last_name email phone_number]</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="create-index-and-import-all-users">Create index and import all users</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="no">User</span><span class="p">.</span><span class="nf">__elasticsearch__</span><span class="p">.</span><span class="nf">create_index!</span>
+<span class="p">{</span>
+           <span class="s2">"acknowledged"</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+    <span class="s2">"shards_acknowledged"</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+                  <span class="s2">"index"</span> <span class="o">=&gt;</span> <span class="s2">"users"</span>
+<span class="p">}</span>
+
+<span class="o">&gt;</span> <span class="no">User</span><span class="p">.</span><span class="nf">import</span>
+</code></pre></div></div>
+
+<p><strong>You can search users now</strong></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">search</span> <span class="s1">'vesta'</span>
+<span class="o">&gt;</span> <span class="n">response</span><span class="p">.</span><span class="nf">results</span><span class="p">.</span><span class="nf">as_json</span>
+
+<span class="p">[</span>
+  <span class="p">{</span>
+     <span class="s2">"_index"</span> <span class="o">=&gt;</span> <span class="s2">"users"</span><span class="p">,</span>
+      <span class="s2">"_type"</span> <span class="o">=&gt;</span> <span class="s2">"user"</span><span class="p">,</span>
+        <span class="s2">"_id"</span> <span class="o">=&gt;</span> <span class="s2">"10"</span><span class="p">,</span>
+     <span class="s2">"_score"</span> <span class="o">=&gt;</span> <span class="mf">1.6348188</span><span class="p">,</span>
+    <span class="s2">"_source"</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"first_name"</span> <span class="o">=&gt;</span> <span class="s2">"Vesta"</span><span class="p">,</span>
+         <span class="s2">"last_name"</span> <span class="o">=&gt;</span> <span class="s2">"Toy"</span><span class="p">,</span>
+             <span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"vesta@bradtkeconnelly.biz"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<h2 id="add-new-fields">Add new fields</h2>
+
+<p>Now to change the mapping just add new field and update the mapping</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapping</span> <span class="k">do</span>
+  <span class="c1">#...</span>
+  <span class="n">indexes</span> <span class="ss">:phone_number</span><span class="p">,</span> <span class="ss">type: :text</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="update-the-mapping-using-put-mapping-api">Update the mapping using Put Mapping API</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># ...</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">put_mapping</span>
+    <span class="n">__elasticsearch__</span><span class="p">.</span><span class="nf">client</span><span class="p">.</span><span class="nf">indices</span><span class="p">.</span><span class="nf">put_mapping</span><span class="p">(</span>
+      <span class="ss">index: </span><span class="n">index_name</span><span class="p">,</span>
+      <span class="ss">type:  </span><span class="n">document_type</span><span class="p">,</span>
+      <span class="ss">body:  </span><span class="n">mapping</span><span class="p">.</span><span class="nf">to_hash</span>
+    <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="bulk-update">Bulk Update</h2>
+
+<p>Now you need to update all the documents. we can use the bulk update API.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">bulk_update</span>
+  <span class="n">find_in_batches</span> <span class="k">do</span> <span class="o">|</span><span class="n">users</span><span class="o">|</span>
+    <span class="n">__elasticsearch__</span><span class="p">.</span><span class="nf">client</span><span class="p">.</span><span class="nf">bulk</span><span class="p">(</span>
+      <span class="ss">index: </span><span class="n">index_name</span><span class="p">,</span>
+      <span class="ss">type: </span><span class="n">__elasticsearch__</span><span class="p">.</span><span class="nf">document_type</span><span class="p">,</span>
+      <span class="ss">body: </span><span class="n">processed_records</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+    <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">processed_records</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+  <span class="n">users</span><span class="p">.</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+    <span class="p">{</span>
+      <span class="ss">update: </span><span class="p">{</span>
+        <span class="ss">_id: </span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+        <span class="ss">data: </span><span class="p">{</span>
+          <span class="ss">doc: </span><span class="p">{</span>
+            <span class="ss">id: </span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+            <span class="ss">phone_number: </span><span class="n">user</span><span class="p">.</span><span class="nf">phone_number</span>
+          <span class="p">}.</span><span class="nf">as_json</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.3/index.html" target="_blank">Elasticsearch official documentation</a></li>
+  <li><a href="https://github.com/elastic/elasticsearch-rails/tree/master/elasticsearch-model" target="_blank">Elasticsearch::Model</a></li>
+</ul>]]></content><author><name>{&quot;twitter&quot;=&gt;&quot;deepakmahakale&quot;}</name></author><category term="ruby" /><category term="elasticsearch" /><summary type="html"><![CDATA[The PUT mapping API allows you to add fields to an existing index. This method is available with Elasticsearch::Model but it’s not documented. Elasticsearch Version - 5.3 Create a User model &gt; rails g model user first_name:string last_name:string email:string phone_number:string invoke active_record create db/migrate/20180420162454_create_users.rb create app/models/user.rb &gt; rake db:migrate]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" /><media:content medium="image" url="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

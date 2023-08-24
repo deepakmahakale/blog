@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+  <link rel="manifest" href="/blog/site.webmanifest"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Blog | Deepak’s blog</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Blog" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Ruby on Rails best practices, tips, common issues and solutions." />
+<meta property="og:description" content="Ruby on Rails best practices, tips, common issues and solutions." />
+<link rel="canonical" href="https://deepakmahakale.com/blog/" />
+<meta property="og:url" content="https://deepakmahakale.com/blog/" />
+<meta property="og:site_name" content="Deepak’s blog" />
+<meta property="og:image" content="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://deepakmahakale.com/blog/assets/images/default-card-seo.png" />
+<meta property="twitter:title" content="Blog" />
+<meta name="twitter:site" content="@deepakmahakale" />
+<meta name="twitter:creator" content="@deepakmahakale" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"Ruby on Rails best practices, tips, common issues and solutions.","headline":"Blog","image":"https://deepakmahakale.com/blog/assets/images/default-card-seo.png","name":"Deepak Mahakale","sameAs":["https://github.com/deepakmahakale","https://stackoverflow.com/users/4758119/deepak-mahakale","https://www.linkedin.com/in/deepakmahakale","https://twitter.com/deepakmahakale","https://www.facebook.com/deepakmahakale1","https://www.instagram.com/deepakmahakale"],"url":"https://deepakmahakale.com/blog/"}</script>
+<!-- End Jekyll SEO tag -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700|Open+Sans:400,400i,600" rel="stylesheet">
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="stylesheet" href="https://deepakmahakale.com/assets/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"><link type="application/atom+xml" rel="alternate" href="https://deepakmahakale.com/blog/feed.xml" title="Deepak's blog" /><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WRTX84W');</script>
+<!-- End Google Tag Manager -->
+</head>
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRTX84W" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="menu-button"><button class="hamburger hamburger--spring" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button></div><script>  var hamburger = document.querySelector('.hamburger');    hamburger.addEventListener('click', function() {    hamburger.classList.toggle('is-active');    document.body.classList.toggle('show-menu');    });</script><div class="menu-wrapper"><nav class="menu"><div class="list-items uppercase"><a class="underline-effect" href="https://deepakmahakale.com"><span>Home</span></a><br><a class="underline-effect" href="https://deepakmahakale.com/blog"><span>Blog</span></a><br><a class="underline-effect" href="https://deepakmahakale.com/about"><span>About</span></a><br><a class="underline-effect" href="mailto:hello@deepakmahakale.in"><span>Contact</span></a></div></nav></div><header class="page-header">
+      <div class="wrapper">
+        <span class="site-title"><a href="/blog" class="no-style">Deepak's blog</a></span>
+      </div>
+    </header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="home">
+
+  
+
+  <h1 id="recent-posts" class="page-heading">Recent posts</h1>
+
+  <ul class="post-list">
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2023/08/24/unable-to-install-puma.html">Error installing puma - Failed to build gem native extension</a>
+    
+  </h2>
+  <span class="post-meta">
+    Aug 24, 2023
+  </span>
+  
+    <div class="post-excerpt">
+      <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Building native extensions. This could take a <span class="k">while</span>...
+ERROR: Error installing puma:
+ERROR: Failed to build gem native extension.
+</code></pre></div></div>
+
+
+      <strong>
+        <a href="/blog/2023/08/24/unable-to-install-puma.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#puma" class="tag">puma</a>
+  
+  <a href="/blog/tags#rubygems" class="tag">rubygems</a>
+  
+
+
+</div>
+
+      </li>
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2023/07/14/how-to-mute-bot-accounts-on-twitter.html">How to get rid of bot accounts from Twitter timeline.</a>
+    
+  </h2>
+  <span class="post-meta">
+    Jul 14, 2023
+  </span>
+  
+    <div class="post-excerpt">
+      <p>Tired of the bot accounts showing up in the twitter replies section?</p>
+
+<p>There’s no direct way to block all the bot accounts as of 14th July 2023.</p>
+
+<p>But we will show you a way to get rid of the bot accounts to some extent.</p>
+
+<p>Let’s see how to do it:</p>
+
+
+      <strong>
+        <a href="/blog/2023/07/14/how-to-mute-bot-accounts-on-twitter.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#twitter" class="tag">twitter</a>
+  
+  <a href="/blog/tags#bots" class="tag">bots</a>
+  
+
+
+</div>
+
+      </li>
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2023/06/16/undefined-method-exists-for-File-Class-NoMethodError.html">undefined method `exists?' for File:Class (NoMethodError)</a>
+    
+  </h2>
+  <span class="post-meta">
+    Jun 16, 2023
+  </span>
+  
+    <div class="post-excerpt">
+      <p>Recently we upgraded ruby to 3.2.
+We started getting the following error:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sr">/Users/</span><span class="n">deepak</span><span class="o">/</span><span class="p">.</span><span class="nf">rvm</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">3.2</span><span class="o">.</span><span class="mi">2</span><span class="vi">@my</span><span class="o">-</span><span class="n">project</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">pundit</span><span class="o">-</span><span class="mf">2.3</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">generators</span><span class="o">/</span><span class="n">rspec</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">policy_spec</span><span class="p">.</span><span class="nf">rb</span><span class="p">:</span><span class="mi">1</span><span class="ss">:in</span> <span class="sb">`template':
+undefined method `</span><span class="n">exists?</span><span class="err">'</span> <span class="k">for</span> <span class="no">File</span><span class="ss">:Class</span> <span class="p">(</span><span class="no">NoMethodError</span><span class="p">)</span>
+
+<span class="no">Did</span> <span class="n">you</span> <span class="n">mean?</span>  <span class="n">exist?</span>
+</code></pre></div></div>
+
+<p>This is how we traced it and fixed it:</p>
+
+      <strong>
+        <a href="/blog/2023/06/16/undefined-method-exists-for-File-Class-NoMethodError.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#ruby" class="tag">ruby</a>
+  
+  <a href="/blog/tags#rubygems" class="tag">rubygems</a>
+  
+  <a href="/blog/tags#pundit" class="tag">pundit</a>
+  
+
+
+</div>
+
+      </li>
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2023/05/19/how-to-clear-twitter-interests-in-bulk.html">How to clear Twitter interests in bulk.</a>
+    
+  </h2>
+  <span class="post-meta">
+    May 19, 2023
+  </span>
+  
+    <div class="post-excerpt">
+      <p>Are you getting random tweets on your timeline?</p>
+
+<p>Or you clicked on a tweet and now you’re getting tweets related to the same topic and can’t get rid of it.</p>
+
+<p>Let’s see how to get rid of the interests:</p>
+
+
+      <strong>
+        <a href="/blog/2023/05/19/how-to-clear-twitter-interests-in-bulk.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#twitter" class="tag">twitter</a>
+  
+  <a href="/blog/tags#javascript" class="tag">javascript</a>
+  
+
+
+</div>
+
+      </li>
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2022/05/06/audio-element-autoplay-issue-on-redirection-with-turbolinks.html">Audio element autoplay issue on redirection with turbolinks.</a>
+    
+  </h2>
+  <span class="post-meta">
+    May 6, 2022
+  </span>
+  
+    <div class="post-excerpt">
+      <h2 id="background-of-the-issue">Background of the issue</h2>
+
+<p>Recently, we were working on a feature where we wanted to autoplay the audio.</p>
+
+<p>So like a normal developer we did the following:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;audio</span> <span class="na">autoplay</span> <span class="na">data-audio-target=</span><span class="s">"audioElement"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">"https://www.xyz/..."</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/audio&gt;</span>
+</code></pre></div></div>
+
+<p>Since this is a rails project and we have turbolinks on,
+we came across an interesting issue.</p>
+
+<p>Whenever we were navigating from the page with the audio element to any other page the audio from the previous page used to play.</p>
+
+<p>We tried to search the same and came across few issue in the turbolinks repository.</p>
+
+<ul>
+  <li><a href="https://github.com/turbolinks/turbolinks/issues/157" target="_blank">turbolinks/turbolinks#157</a></li>
+  <li><a href="https://github.com/turbolinks/turbolinks/issues/177" target="_blank">turbolinks/turbolinks#177</a></li>
+</ul>
+
+<p>We found few solutions but since we were using stimulus js we solved it with the following approach</p>
+
+
+      <strong>
+        <a href="/blog/2022/05/06/audio-element-autoplay-issue-on-redirection-with-turbolinks.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#rails" class="tag">rails</a>
+  
+  <a href="/blog/tags#stimulusjs" class="tag">stimulusjs</a>
+  
+  <a href="/blog/tags#turbolinks" class="tag">turbolinks</a>
+  
+
+
+</div>
+
+      </li>
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2021/04/26/5-must-have-gems-in-ror-development-environment.html">5 Must have gems in Ruby on Rails development environment.</a>
+    
+  </h2>
+  <span class="post-meta">
+    Apr 26, 2021
+  </span>
+  
+    <div class="post-excerpt">
+      <p>I have been developing rails applications since 2014.
+I started my career with rails and since then I have worked on numerous
+rails projects.</p>
+
+<p>These are a few gems that I like to add to almost all of my projects
+(including the personal projects).
+These gems definitely increase productivity and make the developer’s
+life easier.</p>
+
+<p>These are my top 5 gems you should have in your development environment.</p>
+
+
+      <strong>
+        <a href="/blog/2021/04/26/5-must-have-gems-in-ror-development-environment.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#ruby" class="tag">ruby</a>
+  
+  <a href="/blog/tags#rubygems" class="tag">rubygems</a>
+  
+
+
+</div>
+
+      </li>
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2020/07/04/guide-to-upgrade-rails-application.html">A step by step guide to upgrade rails 4 application to rails 5</a>
+    
+  </h2>
+  <span class="post-meta">
+    Jul 4, 2020
+  </span>
+  
+    <div class="post-excerpt">
+      <p>Upgrading an application can be tedious if you don’t have good test coverage.</p>
+
+<p>This article covers the common issues you might face while upgrading the from rails 4 to 5.</p>
+
+<p>If you are upgrading to ruby 2.7 export <code class="language-plaintext highlighter-rouge">RUBYOPT="-W0"</code> to avoid getting your screen filled up with deprecations warnings</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">RUBYOPT</span><span class="o">=</span><span class="s2">"-W0"</span>
+
+bundle <span class="nb">exec </span>rspec
+
+<span class="c"># OR use</span>
+
+<span class="nv">RUBYOPT</span><span class="o">=</span><span class="s2">"-W0"</span> bundle <span class="nb">exec </span>rspec
+</code></pre></div></div>
+
+
+      <strong>
+        <a href="/blog/2020/07/04/guide-to-upgrade-rails-application.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#rails" class="tag">rails</a>
+  
+  <a href="/blog/tags#rails-upgrade" class="tag">rails-upgrade</a>
+  
+
+
+</div>
+
+      </li>
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2018/04/21/elasticsearch-model-partial-update-with-custom-callbacks.html">Elasticsearch::Model - Partial update with custom callbacks</a>
+    
+  </h2>
+  <span class="post-meta">
+    Apr 21, 2018
+  </span>
+  
+    <div class="post-excerpt">
+      <p>If you want to partially update the documents on Elasticsearch you can include <code class="language-plaintext highlighter-rouge">Elasticsearch::Model::Callbacks</code> module.</p>
+
+<p>You can also perform partial update with custom callbacks instead of indexing the whole document.</p>
+
+<blockquote>
+  <p>Elasticsearch Version - 5.3</p>
+</blockquote>
+
+<h2 id="partially-update-a-document">Partially update a document</h2>
+
+<p>There is <a href="https://github.com/elastic/elasticsearch-rails/blob/7815039c0f78ed0b9b896936875ee4d01855390e/elasticsearch-model/lib/elasticsearch/model/indexing.rb#L432-L439" target="_blank"><code class="language-plaintext highlighter-rouge">update_document_attributes</code></a> method in <code class="language-plaintext highlighter-rouge">Elasticsearch::Model</code> which is used for partial update but it’s not documented.
+You can still use the method to perform the partial update.</p>
+
+
+      <strong>
+        <a href="/blog/2018/04/21/elasticsearch-model-partial-update-with-custom-callbacks.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#ruby" class="tag">ruby</a>
+  
+  <a href="/blog/tags#elasticsearch" class="tag">elasticsearch</a>
+  
+
+
+</div>
+
+      </li>
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2018/04/21/rails-and-timezone-issue-with-query.html">Rails and TimeZone issue with query</a>
+    
+  </h2>
+  <span class="post-meta">
+    Apr 21, 2018
+  </span>
+  
+    <div class="post-excerpt">
+      <p>You must have faced timezone issue if you work with the application in different timezone.
+ActiveRecord does take care of the timezone while creating, updating or querying the records.
+The DateTime is converted to UTC before the query is executed.</p>
+
+<p>You will face issue if you are using raw queries or passing <code class="language-plaintext highlighter-rouge">String</code> instead of <code class="language-plaintext highlighter-rouge">DateTime</code>.</p>
+
+      <strong>
+        <a href="/blog/2018/04/21/rails-and-timezone-issue-with-query.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#rails" class="tag">rails</a>
+  
+
+
+</div>
+
+      </li>
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2018/04/20/elasticsearch-model-put-mapping.html">Elasticsearch::Model - Put Mapping</a>
+    
+  </h2>
+  <span class="post-meta">
+    Apr 20, 2018
+  </span>
+  
+    <div class="post-excerpt">
+      <p>The PUT mapping API allows you to add fields to an existing index.
+This method is available with Elasticsearch::Model but it’s not documented.</p>
+
+<blockquote>
+  <p>Elasticsearch Version - 5.3</p>
+</blockquote>
+
+<h2 id="create-a-user-model">Create a User model</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> rails g model user first_name:string last_name:string email:string phone_number:string
+
+invoke  active_record
+  create    db/migrate/20180420162454_create_users.rb
+  create    app/models/user.rb
+
+<span class="o">&gt;</span> rake db:migrate
+</code></pre></div></div>
+
+      <strong>
+        <a href="/blog/2018/04/20/elasticsearch-model-put-mapping.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#ruby" class="tag">ruby</a>
+  
+  <a href="/blog/tags#elasticsearch" class="tag">elasticsearch</a>
+  
+
+
+</div>
+
+      </li>
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2016/12/04/generating_migrations_with_proper_commands.html">Generating migrations with proper commands</a>
+    
+  </h2>
+  <span class="post-meta">
+    Dec 4, 2016
+  </span>
+  
+    <div class="post-excerpt">
+      <h3 id="creating-a-table">Creating a table</h3>
+
+<blockquote>
+  <p>If the migration name is of the form “CreateXXX” and is followed by a list of column names and types then a migration creating the table XXX with the columns listed will be generated.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rails g migration CreateUsers email:string:index
+</code></pre></div></div>
+
+<p><em>db/migrate/20161201203703_create_users.rb</em></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:users</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:email</span>
+    <span class="k">end</span>
+    <span class="n">add_index</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:email</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+      <strong>
+        <a href="/blog/2016/12/04/generating_migrations_with_proper_commands.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#ruby" class="tag">ruby</a>
+  
+  <a href="/blog/tags#rails" class="tag">rails</a>
+  
+
+
+</div>
+
+      </li>
+    
+      <li class="no-style post-preview">
+        <div>
+  <h2>
+    
+      <a class="post-link" href="/blog/2016/06/16/include-scoped-associations.html">Include scoped associations</a>
+    
+  </h2>
+  <span class="post-meta">
+    Jun 16, 2016
+  </span>
+  
+    <div class="post-excerpt">
+      <p>Rails provide different ways to load associations from the database to avoid <a href="http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations" target="_blank">N + 1 query</a> being fired.
+In this post, I will show you how to <code class="language-plaintext highlighter-rouge">include</code> associations with scope applied on them.</p>
+
+<p>I have two models <code class="language-plaintext highlighter-rouge">User</code> and <code class="language-plaintext highlighter-rouge">Post</code> with following associations:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/models/user.rb</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">has_many</span> <span class="ss">:posts</span><span class="p">,</span> <span class="ss">dependent: :destroy</span>
+<span class="k">end</span>
+
+<span class="c1"># app/models/post.rb</span>
+<span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+  <span class="n">scope</span> <span class="ss">:published</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="ss">published: </span><span class="kp">true</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+
+      <strong>
+        <a href="/blog/2016/06/16/include-scoped-associations.html">read more
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </strong>
+    </div>
+  
+  
+  
+  <a href="/blog/tags#ruby" class="tag">ruby</a>
+  
+  <a href="/blog/tags#rails" class="tag">rails</a>
+  
+
+
+</div>
+
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </main><div class="bottom"><div class="contact wrapper"><div class="social"><h6>Social Media</h6><div class="divider"></div><ul class="no-style footer-links"><li><a href="https://twitter.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">Twitter</a></li><li><a href="https://www.facebook.com/deepakmahakale1" rel="me" target="_blank" title="deepakmahakale1">Facebook</a></li><li><a href="https://www.instagram.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">Instagram</a></li><li><a href="https://github.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">GitHub</a></li><li><a href="https://www.linkedin.com/in/deepakmahakale" rel="me" target="_blank" title="deepakmahakale">LinkedIn</a></li><li><a href="https://stackoverflow.com/users/4758119/deepak-mahakale" rel="me" target="_blank" title="4758119/deepak-mahakale">Stack Overflow</a></li></ul><ul class="social-media-list"><li><a href="https://twitter.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#twitter"></use></svg></a></li><li><a href="https://www.facebook.com/deepakmahakale1" rel="me" target="_blank" title="deepakmahakale1"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#facebook"></use></svg></a></li><li><a href="https://www.instagram.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#instagram"></use></svg></a></li><li><a href="https://github.com/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#github"></use></svg></a></li><li><a href="https://www.linkedin.com/in/deepakmahakale" rel="me" target="_blank" title="deepakmahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#linkedin"></use></svg></a></li><li><a href="https://stackoverflow.com/users/4758119/deepak-mahakale" rel="me" target="_blank" title="4758119/deepak-mahakale"><svg class="svg-icon grey"><use xlink:href="/blog/assets/social-icons.svg#stackoverflow"></use></svg></a></li></ul></div></div><div class="clearfix"></div></div><footer class="site-footer"><ul class="footer-links uppercase"><li><a href="https://deepakmahakale.com">Home</a></li><li><a href="https://deepakmahakale.com/blog">Blog</a></li><li><a href="https://deepakmahakale.com/about">About</a></li><li><a href="mailto:hello@deepakmahakale.in">Contact</a></li></ul><span class="copyright">© 2023 DEEPAK MAHAKALE</span></footer><script src="https://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script>
+  $("#slideshow > div:gt(0)").hide();
+  setInterval(function() {
+    $('#slideshow > div:first')
+      .fadeOut(1000)
+      .next()
+      .delay(1100)
+      .fadeIn(1000)
+      .end()
+      .appendTo('#slideshow');
+  },  10000);
+</script>
+</body>
+
+</html>
