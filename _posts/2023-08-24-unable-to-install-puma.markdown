@@ -6,7 +6,7 @@ description: >
 date:     2023-08-24 12:00:00 +0530
 comments: true
 tags:     [puma, rubygems]
-image:
+image:    autogenerate
 ---
 
 ```sh
