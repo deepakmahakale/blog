@@ -30,7 +30,7 @@ module Jekyll
       # Add the file to the list of static_files needed to be copied to the _site
       site.static_files << Jekyll::StaticFile.new(site, site.source, '/assets/images/opengraph/', "#{id}.jpg")
 
-      "/assets/images/opengraph/#{id}.png"
+      "/assets/images/opengraph/#{id}.jpg"
     end
   end
 end
