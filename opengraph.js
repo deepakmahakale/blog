@@ -15,32 +15,31 @@ program
 const options = program.opts();
 
 // Draw cat with lime helmet
-loadImage('./assets/artboard.png').then((image) => {
+loadImage('./assets/og_image_template.jpg').then((image) => {
   ctx.drawImage(image, 0, 0, 1200, 630);
 
   ctx.textBaseline = "top";
+  ctx.fillStyle = '#303A4B';
 
   // Date
-  ctx.font = '40px Arial';
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText(options.date, 60, 198);
+  ctx.font = '45px sans-serif';
+  ctx.fillText(options.date, 62, 192);
 
   // Title
-  ctx.font = '76px Arial';
-  // ctx.font = '90px sans-serif';
-  wrapText(ctx, options.title, 60, 250, 1100, 100);
+  ctx.font = '70px sans-serif';
+  wrapText(ctx, options.title, 60, 250, 1100, 90);
 
   // Author
-  ctx.textBaseline = "bottom";
-  ctx.font = '40px Arial';
-  // ctx.fillStyle = '#EBAFA2';
-  ctx.fillText(options.author || 'Deepak Mahakale', 60, 522);
+  // ctx.textBaseline = "bottom";
+  // ctx.font = '40px Arial';
+  // // ctx.fillStyle = '#EBAFA2';
+  // ctx.fillText(options.author || 'Deepak Mahakale', 60, 555);
 
   fs.mkdirSync(path.dirname(options.filename), { recursive: true });
   const out = fs.createWriteStream(options.filename)
-  const stream = canvas.createPNGStream()
+  const stream = canvas.createJPEGStream()
   stream.pipe(out)
-  out.on('finish', () => console.log('The PNG file was created.'))
+  out.on('finish', () => console.log('The JPEG file was created.'))
 
 })
 
