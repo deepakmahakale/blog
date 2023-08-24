@@ -6,7 +6,7 @@ description: >
 date:     2023-07-14 12:00:00 +0530
 comments: true
 tags:     [twitter, bots]
-image:    /assets/images/how-to-mute-bot-accounts-on-twitter.jpg
+image:    autogenerate
 ---
 
 Tired of the bot accounts showing up in the twitter replies section?

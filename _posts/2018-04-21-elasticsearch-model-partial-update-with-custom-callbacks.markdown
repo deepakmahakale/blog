@@ -4,6 +4,7 @@ title:    Elasticsearch::Model - Partial update with custom callbacks
 date:     2018-04-21 22:28:35 +0530
 comments: true
 tags: [ruby, elasticsearch]
+image: autogenerate
 ---
 
 If you want to partially update the documents on Elasticsearch you can include `Elasticsearch::Model::Callbacks` module.

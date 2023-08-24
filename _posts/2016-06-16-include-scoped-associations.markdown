@@ -4,6 +4,7 @@ title:    "Include scoped associations"
 date:     2016-06-16 14:00:58 +0530
 comments: true
 tags: [ruby, rails]
+image: autogenerate
 ---
 
 Rails provide different ways to load associations from the database to avoid [N + 1 query][eager-loading-associations]{:target="_blank"} being fired.
