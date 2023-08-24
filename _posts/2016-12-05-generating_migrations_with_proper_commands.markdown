@@ -1,6 +1,6 @@
 ---
 layout:   post
-title:    "Generating migrations with proper commands"
+title:    Generating migrations with proper commands
 date:     2016-12-05 00:00:30 +0530
 comments: true
 tags: [ruby, rails]
