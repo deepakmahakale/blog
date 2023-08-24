@@ -1,6 +1,6 @@
 ---
 layout:   post
-title:    undefined method `exists? for File:Class (NoMethodError)
+title:    undefined method `exists?' for File:Class (NoMethodError)
 description: >
   Fix the
   undefined method `exists?' for File:Class (NoMethodError)

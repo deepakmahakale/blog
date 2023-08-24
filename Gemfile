@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'jekyll', '~> 4.0'
 gem 'rickshaw'
+
 group :jekyll_plugins do
   gem 'jekyll-feed'
   gem 'jekyll-haml-markup'
