@@ -11,7 +11,10 @@ author: deepakmahakale
 ---
 
 **Update:**
+
 Rails 7.1 Beta 1 is [released](https://edgeguides.rubyonrails.org/7_1_release_notes.html) on September 13, 2023.
+
+Rails 7.1 is [released](https://rubyonrails.org/2023/10/5/Rails-7-1-0-has-been-released) on October 5, 2023.
 
 Let's see what is new in rails 7.1
 
