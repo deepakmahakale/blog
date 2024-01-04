@@ -8,16 +8,21 @@ tags:     [rvm, ruby]
 image:    autogenerate
 ---
 
-```
+### Issue
+
+```sh
 Error running '__rvm_make -j12',
 please read /Users/deepak/.rvm/log/1704350883_ruby-3.3.0/make.log
 ```
 
 <!--more-->
 
-### Full Log
+<details open>
+<summary>
+  <strong>Click to show/hide complete log</strong>
+</summary>
 
-```
+{% highlight sh %}
 rvm install 3.3.0
 Searching for binary rubies, this might take some time.
 No binary rubies available for: osx/13.4/x86_64/ruby-3.3.0.
@@ -39,7 +44,8 @@ Error running '__rvm_make -j12',
 please read /Users/deepak/.rvm/log/1704350883_ruby-3.3.0/make.log
 
 There has been an error while running make. Halting the installation.
-```
+{% endhighlight %}
+</details>
 
 ### Solution
 

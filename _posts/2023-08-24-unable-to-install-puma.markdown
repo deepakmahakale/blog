@@ -9,6 +9,8 @@ tags:     [puma, rubygems]
 image:    autogenerate
 ---
 
+### Issue
+
 ```sh
 Building native extensions. This could take a while...
 ERROR: Error installing puma:
@@ -17,9 +19,12 @@ ERROR: Failed to build gem native extension.
 
 <!--more-->
 
-### Full Log
+<details open>
+<summary>
+  <strong>Click to show/hide complete log</strong>
+</summary>
 
-```
+{% highlight sh %}
 ERROR:  Error installing puma:
 	ERROR: Failed to build gem native extension.
 
@@ -58,7 +63,8 @@ make failed, exit code 2
 
 Gem files will remain installed in /Users/deepak/.rvm/gems/ruby-3.2.1/gems/puma-6.0.0 for inspection.
 Results logged to /Users/deepak/.rvm/gems/ruby-3.2.1/extensions/x86_64-darwin-22/3.2.0/puma-6.0.0/gem_make.out
-```
+{% endhighlight %}
+</details>
 
 ### Solution for Puma < 6.0
 
