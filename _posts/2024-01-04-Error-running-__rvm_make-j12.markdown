@@ -52,3 +52,16 @@ There has been an error while running make. Halting the installation.
 ```sh
 rvm install ruby-3.3.0 -C --with-openssl-dir=/usr/local/etc/openssl@3
 ```
+
+If the above still doesn't work 
+
+Upgrade the xcode or remove and install altogether 
+
+```
+sudo rm -rf /Library/Developer/CommandLineTools
+sudo xcode-select --install
+
+# and then
+
+rvm reinstall 3.3.0 --with-openssl-dir=$(brew --prefix openssl@3)
+```
