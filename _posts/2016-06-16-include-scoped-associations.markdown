@@ -110,4 +110,4 @@ end
 
 Voila!
 
-[eager-loading-associations]: http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations
+[eager-loading-associations]: https://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations

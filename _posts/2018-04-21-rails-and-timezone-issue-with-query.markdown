@@ -258,16 +258,14 @@ result.as_json
 
 ###  References
 
-  - [http://api.rubyonrails.org][rubyonrails-doc]{:target='_blank'}
+  - [https://api.rubyonrails.org][rubyonrails-doc]{:target='_blank'}
   - [https://www.postgresql.org][postgresql-doc]{:target='_blank'}
 
-[time-current]: http://api.rubyonrails.org/classes/Time.html#method-c-current
-[date-current]: http://api.rubyonrails.org/classes/Date.html#method-c-current
-[beginning_of_day]: http://api.rubyonrails.org/classes/Time.html#method-i-beginning_of_day
-[end_of_day]: http://api.rubyonrails.org/classes/Time.html#method-i-end_of_day
-[find_by_sql]: http://api.rubyonrails.org/classes/ActiveRecord/Querying.html#method-i-find_by_sql
-[datatype-datetime]: https://www.postgresql.org/docs/9.1/static/datatype-datetime.html
-[rubyonrails-doc]: http://api.rubyonrails.org
+[time-current]: https://api.rubyonrails.org/classes/Time.html#method-c-current
+[date-current]: https://api.rubyonrails.org/classes/Date.html#method-c-current
+[beginning_of_day]: https://api.rubyonrails.org/classes/Time.html#method-i-beginning_of_day
+[end_of_day]: https://api.rubyonrails.org/classes/Time.html#method-i-end_of_day
+[find_by_sql]: https://api.rubyonrails.org/classes/ActiveRecord/Querying.html#method-i-find_by_sql
+[datatype-datetime]: https://www.postgresql.org/docs/9.1/datatype-datetime.html
+[rubyonrails-doc]: https://api.rubyonrails.org
 [postgresql-doc]: https://www.postgresql.org
-
-
