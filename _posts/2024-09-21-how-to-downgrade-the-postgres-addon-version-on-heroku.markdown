@@ -186,3 +186,8 @@ heroku addons:destroy HEROKU_POSTGRESQL_TEAL --app my-heroku-app-name
 ```
 
 That's it. We successfully downgraded the postgres addon version on Heroku.
+
+## References
+
+- [Importing and Exporting Heroku Postgres Databases](https://devcenter.heroku.com/articles/heroku-postgres-import-export){:target="_blank"}
+- [Upgrading the Version of a Heroku Postgres Database](https://devcenter.heroku.com/articles/upgrading-heroku-postgres-databases){:target="_blank"}
