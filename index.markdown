@@ -4,7 +4,7 @@ title: Blog
 ---
 
 <div class="home">
-
+  {% include blog_links.html %}
   {% if site.drafts.size > 0 %}
   <h1 id="upcoming-posts" class="page-heading">Upcoming posts</h1>
 
