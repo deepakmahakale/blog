@@ -16,6 +16,8 @@ We wanted to downgrade the staging server to version `14` to ensure that the ver
 
 This is how we did it.
 
+<!--more-->
+
 First, we created a new postgres addon with the version we wanted to downgrade to.
 
 ```bash
