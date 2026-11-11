@@ -1,29 +1,8 @@
 ---
-layout: page
-title: Blog
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: home
+header:
+  og_image: /assets/images/opengraph/blog.png
 ---
-
-<div class="home">
-  {% include blog_links.html %}
-  {% if site.drafts.size > 0 %}
-  <h1 id="upcoming-posts" class="page-heading">Upcoming posts</h1>
-
-  <ul class="post-list">
-    {% for post in site.drafts %}
-      <li class="no-style post-preview">
-        {% include post_preview.html %}
-      </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-
-  <h1 id="recent-posts" class="page-heading">Recent posts</h1>
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li class="no-style post-preview">
-        {% include post_preview.html %}
-      </li>
-    {% endfor %}
-  </ul>
-</div>

@@ -1,13 +1,15 @@
 ---
-layout:   post
-title:    What's new in Rails 7.1
-description: >
+title: What's new in Rails 7.1
+description: &description >
   Dockerfile, BYO Authentication, Async queries, Composite Primary Keys, Bun support and more.
-date:     2023-09-13 12:00:00 +0530
-comments: true
-tags:     [rails, rails7-1]
-image:    autogenerate
-author: deepakmahakale
+excerpt: *description
+date: 2023-09-13 12:00:00 +0530
+categories:
+  - Rails
+tags:
+  - Rails 7.1
+header:
+  og_image: /assets/images/opengraph/2023-09-13-whats-new-in-rails-7-1.png
 ---
 
 **Update:**

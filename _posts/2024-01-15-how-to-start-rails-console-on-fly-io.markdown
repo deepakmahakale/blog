@@ -1,11 +1,16 @@
 ---
-layout:   post
-title:    How to start rails console on fly.io
-description: How to start rails console on fly.io
-date:     2024-01-15 12:00:00 +0530
-comments: true
-tags:     [rails, fly]
-image:    autogenerate
+title: How to start rails console on fly.io
+description: &description >
+  How to start rails console on fly.io
+excerpt: *description
+date: 2024-01-15 12:00:00 +0530
+categories:
+  - Deployment
+tags:
+  - Fly.io
+  - Rails Console
+header:
+  og_image: /assets/images/opengraph/2024-01-15-how-to-start-rails-console-on-fly-io.png
 ---
 
 ### Issue

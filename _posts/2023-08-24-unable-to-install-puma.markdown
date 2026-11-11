@@ -1,12 +1,16 @@
 ---
-layout:   post
-title:    Error installing puma - Failed to build gem native extension
-description: >
+title: Error installing puma - Failed to build gem native extension
+description: &description >
   A solution to install puma
-date:     2023-08-24 12:00:00 +0530
-comments: true
-tags:     [puma, rubygems]
-image:    autogenerate
+excerpt: *description
+date: 2023-08-24 12:00:00 +0530
+categories:
+  - Ruby
+tags:
+  - Puma
+  - RubyGems
+header:
+  og_image: /assets/images/opengraph/2023-08-24-unable-to-install-puma.png
 ---
 
 ### Issue

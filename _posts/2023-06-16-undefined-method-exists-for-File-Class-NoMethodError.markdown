@@ -1,14 +1,17 @@
 ---
-layout:   post
-title:    undefined method `exists?' for File:Class (NoMethodError)
-description: >
-  Fix the
-  undefined method `exists?' for File:Class (NoMethodError)
-  in pundit policy generator
-date:     2023-06-16 11:20:00 +0530
-comments: true
-tags:     [ruby, rubygems, pundit]
-image:    autogenerate
+title: undefined method `exists?' for File:Class (NoMethodError)
+description: &description >
+  Fix the undefined method `exists?' for File:Class (NoMethodError) in pundit policy generator
+excerpt: *description
+date: 2023-06-16 11:20:00 +0530
+categories:
+  - Ruby
+tags:
+  - RubyGems
+  - Pundit
+  - Ruby 3.2
+header:
+  og_image: /assets/images/opengraph/2023-06-16-undefined-method-exists-for-File-Class-NoMethodError.png
 ---
 
 Recently we upgraded ruby to 3.2.

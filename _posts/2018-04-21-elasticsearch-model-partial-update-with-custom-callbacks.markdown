@@ -1,10 +1,16 @@
 ---
-layout:   post
-title:    Elasticsearch::Model - Partial update with custom callbacks
-date:     2018-04-21 22:28:35 +0530
-comments: true
-tags: [ruby, elasticsearch]
-image: autogenerate
+title: Elasticsearch::Model - Partial update with custom callbacks
+description: &description >
+  Partially update Elasticsearch documents with custom callbacks instead of reindexing the whole document.
+excerpt: *description
+date: 2018-04-21 22:28:35 +0530
+categories:
+  - Rails
+tags:
+  - Elasticsearch
+  - Callbacks
+header:
+  og_image: /assets/images/opengraph/2018-04-21-elasticsearch-model-partial-update-with-custom-callbacks.png
 ---
 
 If you want to partially update the documents on Elasticsearch you can include `Elasticsearch::Model::Callbacks` module.

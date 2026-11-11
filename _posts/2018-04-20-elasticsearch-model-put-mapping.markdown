@@ -1,10 +1,15 @@
 ---
-layout:   post
-title:    Elasticsearch::Model - Put Mapping
-date:     2018-04-20 13:38:58 +0530
-comments: true
-tags: [ruby, elasticsearch]
-image: autogenerate
+title: Elasticsearch::Model - Put Mapping
+description: &description >
+  Add fields to an existing Elasticsearch index with the undocumented put mapping method in Elasticsearch::Model.
+excerpt: *description
+date: 2018-04-20 13:38:58 +0530
+categories:
+  - Rails
+tags:
+  - Elasticsearch
+header:
+  og_image: /assets/images/opengraph/2018-04-20-elasticsearch-model-put-mapping.png
 ---
 The PUT mapping API allows you to add fields to an existing index.
 This method is available with Elasticsearch::Model but it's not documented.

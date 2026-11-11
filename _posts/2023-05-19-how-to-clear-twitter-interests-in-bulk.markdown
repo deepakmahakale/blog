@@ -1,12 +1,15 @@
 ---
-layout:   post
-title:    How to clear Twitter interests in bulk.
-description: >
+title: How to clear Twitter interests in bulk.
+description: &description >
   Twitter timeline messed up? In this blog we discuss how to clear Twitter interests in bulk (with the help of JS).
-date:     2023-05-19 16:00:00 +0530
-comments: true
-tags:     [twitter, javascript]
-image:    autogenerate
+excerpt: *description
+date: 2023-05-19 16:00:00 +0530
+categories:
+  - Twitter
+tags:
+  - JavaScript
+header:
+  og_image: /assets/images/opengraph/2023-05-19-how-to-clear-twitter-interests-in-bulk.png
 ---
 
 Are you getting random tweets on your timeline?

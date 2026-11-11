@@ -1,11 +1,16 @@
 ---
-layout:   post
-title:    How to downgrade the postgres addon version on Heroku.
-description: Step by step guide on how to downgrade the postgres addon version on Heroku.
-date:     2024-09-21 19:00:00 +0530
-comments: true
-tags:     [heroku, restore, downgrade, postgres]
-image:    autogenerate
+title: How to downgrade the postgres addon version on Heroku.
+description: &description >
+  Step by step guide on how to downgrade the postgres addon version on Heroku.
+excerpt: *description
+date: 2024-09-21 19:00:00 +0530
+categories:
+  - Deployment
+tags:
+  - Heroku
+  - PostgreSQL
+header:
+  og_image: /assets/images/opengraph/2024-09-21-how-to-downgrade-the-postgres-addon-version-on-heroku.png
 ---
 
 We recently had to downgrade the version of the postgres addon on Heroku.
