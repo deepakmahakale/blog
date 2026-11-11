@@ -5,7 +5,7 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `jekyll serve`. If you change this file, please restart the server process.
 
-remote_theme             : "mmistakes/minimal-mistakes@4.24.0"
+remote_theme             : "deepakmahakale/minimal-mistakes@shared-theme"
 
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
@@ -82,8 +82,9 @@ social:
 
 # Analytics
 analytics:
-  provider               : "custom" # false (default), "google", "google-universal", "google-gtag", "custom"
-  google_tag_manager_id  : "GTM-WRTX84W"
+  provider               : "google-tag-manager" # false (default), "google", "google-universal", "google-gtag", "google-tag-manager", "custom"
+  google_tag_manager:
+    container_id         : "GTM-WRTX84W"
 
 
 # Site Author
