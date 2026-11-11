@@ -1,12 +1,16 @@
 ---
-layout:   post
-title:    Audio element autoplay issue on redirection with turbolinks.
-description: >
+title: Audio element autoplay issue on redirection with turbolinks.
+description: &description >
   Audio element autoplay issue on redirection with turbolinks. Fixing the autoplay issue with Stimulus JS
-date:     2022-05-06 08:00:00 +0530
-comments: true
-tags:     [rails, stimulusjs, turbolinks]
-image:    autogenerate
+excerpt: *description
+date: 2022-05-06 08:00:00 +0530
+categories:
+  - JavaScript
+tags:
+  - Turbolinks
+  - Stimulus
+header:
+  og_image: /assets/images/opengraph/2022-05-06-audio-element-autoplay-issue-on-redirection-with-turbolinks.png
 ---
 
 ## Background of the issue

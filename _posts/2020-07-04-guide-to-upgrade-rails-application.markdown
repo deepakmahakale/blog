@@ -1,14 +1,16 @@
 ---
-layout:   post
-title:    A step by step guide to upgrade rails 4 application to rails 5
-description: >
-  Upgrading an application can be tedious if you don't have good test coverage.
-
-  This article covers the common issues you might face while upgrading the from rails 4 to 5.
-date:     2020-07-04 22:00:00 +0530
-comments: true
-tags: [rails, rails-upgrade]
-image: /assets/images/guide-to-upgrade-rails-application.png
+title: A step by step guide to upgrade rails 4 application to rails 5
+description: &description >
+  Upgrading an application can be tedious if you don't have good test coverage. This article covers the common issues you might face while upgrading the from rails 4 to 5.
+excerpt: *description
+date: 2020-07-04 22:00:00 +0530
+categories:
+  - Rails
+tags:
+  - Rails Upgrade
+  - Rails 5
+header:
+  og_image: /assets/images/guide-to-upgrade-rails-application.png
 ---
 
 Upgrading an application can be tedious if you don't have good test coverage.

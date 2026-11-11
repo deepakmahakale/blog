@@ -1,12 +1,15 @@
 ---
-layout:   post
-title:    How to get rid of bot accounts from Twitter timeline.
-description: >
+title: How to get rid of bot accounts from Twitter timeline.
+description: &description >
   Tired of the bot accounts? In this blog we discuss how to get rid of those accounts from your timeline.
-date:     2023-07-14 12:00:00 +0530
-comments: true
-tags:     [twitter, bots]
-image:    autogenerate
+excerpt: *description
+date: 2023-07-14 12:00:00 +0530
+categories:
+  - Twitter
+tags:
+  - Bots
+header:
+  og_image: /assets/images/opengraph/2023-07-14-how-to-mute-bot-accounts-on-twitter.png
 ---
 
 Tired of the bot accounts showing up in the twitter replies section?

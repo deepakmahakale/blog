@@ -1,11 +1,15 @@
 ---
-layout:   post
-title:    Error running '__rvm_make -j12'
-description: Unable to install ruby with rvm due to - Error running __rvm_make -j12
-date:     2024-01-04 15:00:00 +0530
-comments: true
-tags:     [rvm, ruby]
-image:    autogenerate
+title: Error running '__rvm_make -j12'
+description: &description >
+  Unable to install ruby with rvm due to - Error running __rvm_make -j12
+excerpt: *description
+date: 2024-01-04 15:00:00 +0530
+categories:
+  - Ruby
+tags:
+  - RVM
+header:
+  og_image: /assets/images/opengraph/2024-01-04-Error-running-__rvm_make-j12.png
 ---
 
 ### Issue

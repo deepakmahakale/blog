@@ -1,10 +1,16 @@
 ---
-layout:   post
-title:    Rails and TimeZone issue with query
-date:     2018-04-21 13:08:58 +0530
-comments: true
-tags: [rails]
-image: autogenerate
+title: Rails and TimeZone issue with query
+description: &description >
+  Understand how Active Record converts time zones while querying and how to fix date range queries.
+excerpt: *description
+date: 2018-04-21 13:08:58 +0530
+categories:
+  - Rails
+tags:
+  - Active Record
+  - Time Zone
+header:
+  og_image: /assets/images/opengraph/2018-04-21-rails-and-timezone-issue-with-query.png
 ---
 You must have faced timezone issue if you work with the application in different timezone.
 ActiveRecord does take care of the timezone while creating, updating or querying the records.

@@ -1,10 +1,17 @@
 ---
-layout:   post
-title:    "Include scoped associations"
-date:     2016-06-16 14:00:58 +0530
-comments: true
-tags: [ruby, rails]
-image: autogenerate
+title: Include scoped associations
+description: &description >
+  How to include associations with a scope applied on them to avoid N+1 queries in Rails.
+excerpt: *description
+date: 2016-06-16 14:00:58 +0530
+categories:
+  - Rails
+tags:
+  - Active Record
+  - Associations
+  - N+1 Queries
+header:
+  og_image: /assets/images/opengraph/2016-06-16-include-scoped-associations.png
 ---
 
 Rails provide different ways to load associations from the database to avoid [N + 1 query][eager-loading-associations]{:target="_blank"} being fired.

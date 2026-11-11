@@ -1,10 +1,16 @@
 ---
-layout:   post
-title:    Generating migrations with proper commands
-date:     2016-12-05 00:00:30 +0530
-comments: true
-tags: [ruby, rails]
-image: autogenerate
+title: Generating migrations with proper commands
+description: &description >
+  Use the right rails generate migration commands to create tables, add columns, references and indexes.
+excerpt: *description
+date: 2016-12-05 00:00:30 +0530
+categories:
+  - Rails
+tags:
+  - Migrations
+  - Generators
+header:
+  og_image: /assets/images/opengraph/2016-12-05-generating_migrations_with_proper_commands.png
 ---
 
 ### Creating a table
