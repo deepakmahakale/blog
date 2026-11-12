@@ -1,9 +1,10 @@
 ---
 title: undefined method `exists?' for File:Class (NoMethodError)
 description: &description >
-  Fix the undefined method `exists?' for File:Class (NoMethodError) in pundit policy generator
+  Ruby 3.2 removed File.exists? and Dir.exists?. Fix "undefined method exists? for File:Class" in your code and in gems like pundit.
 excerpt: *description
 date: 2023-06-16 11:20:00 +0530
+last_modified_at: 2026-11-12 12:00:00 +0530
 categories:
   - Ruby
 tags:
@@ -26,6 +27,17 @@ Did you mean?  exist?
 
 This is how we traced it and fixed it:
 <!--more-->
+
+## Quick fix
+
+Ruby 3.2 removed `File.exists?` and `Dir.exists?`. Use the singular forms, which work on every Ruby version:
+
+```ruby
+File.exist?("config/database.yml")   # not File.exists?
+Dir.exist?("tmp/cache")               # not Dir.exists?
+```
+
+If the error comes from a gem (the backtrace shows a path inside `gems/`), update that gem. Below is how we found and fixed it for pundit.
 
 ## Solution
 

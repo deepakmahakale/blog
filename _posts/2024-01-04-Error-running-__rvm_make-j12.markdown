@@ -1,9 +1,10 @@
 ---
-title: Error running '__rvm_make -j12'
+title: "Error running '__rvm_make -j12' (or -j8, -j10): fix for RVM Ruby installs"
 description: &description >
-  Unable to install ruby with rvm due to - Error running __rvm_make -j12
+  Fix "Error running __rvm_make -jN" and "There has been an error while running make" when installing Ruby with RVM on macOS: point it at OpenSSL 3.
 excerpt: *description
 date: 2024-01-04 15:00:00 +0530
+last_modified_at: 2026-11-12 12:00:00 +0530
 categories:
   - Ruby
 tags:
@@ -53,8 +54,16 @@ There has been an error while running make. Halting the installation.
 
 ### Solution
 
+The number after `-j` is just how many CPU cores `make` uses (`-j8`, `-j10`, `-j12`, `-j16`…). The fix is the same whatever the number. Check the `make.log` path from the error: on macOS the cause is usually Ruby not finding OpenSSL.
+
 ```sh
 rvm install ruby-3.3.0 -C --with-openssl-dir=/usr/local/etc/openssl@3
+```
+
+On Apple Silicon Macs, Homebrew lives in `/opt/homebrew`, so let Homebrew give the path:
+
+```sh
+rvm install ruby-3.3.0 --with-openssl-dir=$(brew --prefix openssl@3)
 ```
 
 If the above still doesn't work

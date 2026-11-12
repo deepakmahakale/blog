@@ -1,9 +1,10 @@
 ---
 title: How to start rails console on fly.io
 description: &description >
-  How to start rails console on fly.io
+  Open a Rails console on Fly.io with fly ssh console --pty -C, and fix "rails: command not found" after fly ssh console.
 excerpt: *description
 date: 2024-01-15 12:00:00 +0530
+last_modified_at: 2026-11-12 12:00:00 +0530
 categories:
   - Deployment
 tags:
@@ -34,6 +35,14 @@ fly ssh console --pty -C "/app/bin/rails console"
 - `--pty`: Lets you interact with the remote terminal.
 - `-C`: Used to pass a command to be executed on the remote server once the SSH connection is established.
 - `/app/bin/rails console`: The command to start the rails console. NOTE: `app` here is not the app folder inside the rails app. It is the root folder of the rails app.
+
+**Rails 7.1 and newer:** the generated Dockerfile puts the app in `/rails` instead of `/app`, so the command becomes:
+
+```sh
+fly ssh console --pty -C "/rails/bin/rails console"
+```
+
+Not sure which? Run `fly ssh console` and `pwd` shows the folder.
 
 
 ```sh
