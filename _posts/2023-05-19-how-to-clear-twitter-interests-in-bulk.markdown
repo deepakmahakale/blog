@@ -1,9 +1,10 @@
 ---
-title: How to clear Twitter interests in bulk.
+title: "How to clear X (Twitter) interests in bulk"
 description: &description >
-  Twitter timeline messed up? In this blog we discuss how to clear Twitter interests in bulk (with the help of JS).
+  Reset the interests X (Twitter) uses for your timeline: the interests settings page, plus a bookmarklet that unchecks them in bulk.
 excerpt: *description
 date: 2023-05-19 16:00:00 +0530
+last_modified_at: 2026-11-12 12:00:00 +0530
 categories:
   - Twitter
 tags:
@@ -27,7 +28,8 @@ Let's see how to get rid of the interests:
 
   OR
 
-  Visit the <a href="https://twitter.com/settings/your_twitter_data/twitter_interests">Twitter Interests</a> page here.
+  Visit the <a href="https://x.com/settings/your_twitter_data/twitter_interests">X (Twitter) Interests</a> page directly:
+  `x.com/settings/your_twitter_data/twitter_interests`
 
   ![twitter_interests_page]({{site.baseurl}}/assets/images/posts/twitter_interests_page.png){: loading="lazy" }
 
